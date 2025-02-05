@@ -463,9 +463,11 @@ stateResult_t rvWeaponRocketLauncher::State_Fire ( const stateParms_t& parms ) {
 			return SRESULT_STAGE ( STAGE_WAIT );
 	
 		case STAGE_WAIT:	
-			if ( wsfl.attack && gameLocal.time >= nextAttackTime && ( gameLocal.isClient || AmmoInClip ( ) ) && !wsfl.lowerWeapon && burstCounter < burstShots) {
-				SetState ( "Fire", 0 ); 
+			if ( gameLocal.time >= nextAttackTime && ( gameLocal.isClient || AmmoInClip ( ) ) && !wsfl.lowerWeapon && burstCounter < burstShots) {
+				SetState ( "Fire", 0 );
+				return SRESULT_DONE;
 			}
+
 
 			if ( gameLocal.time > nextAttackTime && burstCounter >= burstShots && AnimDone ( ANIMCHANNEL_LEGS, 4 ) ) {
 				SetState ( "Idle", 4 );
@@ -500,7 +502,7 @@ stateResult_t rvWeaponRocketLauncher::State_Rocket_Idle ( const stateParms_t& pa
 			return SRESULT_STAGE ( STAGE_WAIT );
 		
 		case STAGE_WAIT:
-			if ( AmmoAvailable ( ) > AmmoInClip() ) {
+			if ( AmmoAvailable ( ) > AmmoInClip() && !wsfl.attack ) {
 				if ( idleEmpty ) {
 					SetRocketState ( "Rocket_Reload", 0 );
 					return SRESULT_DONE;
