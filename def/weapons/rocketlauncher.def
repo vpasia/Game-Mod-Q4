@@ -70,14 +70,15 @@ entityDef weapon_rocketlauncher
 	"joint_world_flash"			"muzzle_flash"
 
 	"inv_weapon"				"weapon_rocketlauncher"
-	"inv_start_ammo_rocketlauncher"	"20"
+	"inv_start_ammo_rocketlauncher"	"30"
 	"inv_item"					"1"
 	"inv_icon"					"gfx/guis/hud/icons/item_rocket.tga"
 	"inv_name"					"#str_107409"	
 
-	"fireRate"					"1"
+	"fireRate"					".2"
 	"reloadRate"				".8"
 	"spread"					"10"
+	"burstShots"				"3"
 
 	"ammoRegenStep"				"1"
 	"ammoRegenTime"				"1750"
@@ -85,7 +86,7 @@ entityDef weapon_rocketlauncher
 	"weaponname"				"Rocket Launcher"
 	"def_projectile"			"projectile_rocket"
 	"ammoType"					"ammo_rocketlauncher"
-	"clipSize"					"1"
+	"clipSize"					"3"
 	"ammoRequired"				"1"
 	"gui"						"guis/weapons/rocketlauncher_ammo.gui"
 	"mtr_icon"					"gfx/guis/hud/icons/gun_rocketlauncher"
@@ -330,17 +331,16 @@ entityDef projectile_rocket
 	"def_damage"				"damage_rocketDirect"
 	"def_splash_damage"			"damage_rocketSplash"
 																											
-	"speed"						"900"
-	"fuse"						"6"
+	"speed"						"1500"
+	"fuse"						"3"
 	"push"						"48000"
-	"bounce"					"1"
+	"bounce"					".85"
 	
 							
 	"detonate_on_fuse"			"1"
 	"detonate_on_death"			"0"
 	"detonate_on_world"			"0"
 	"detonate_on_actor"			"1"
-	"detonate_on_bounce"		"0"
 								
 	"impact_gib"				"1"								
 	"decal_size"				"75"

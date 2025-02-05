@@ -786,18 +786,12 @@ bool idProjectile::Collide( const trace_t &collision, const idVec3 &velocity, bo
 		}
 	} else {
 		bool bounce = false;
-		rvWeapon* ownerWeapon = nullptr;
-
-		if (owner->IsType(rvWeapon::GetClassType())) 
-		{
-			ownerWeapon = (rvWeapon*)(owner.GetEntity());
-		}
 		
 		// Determine if the projectile should bounce
 		bounce = !physicsObj.IsInWater() && !projectileFlags.detonate_on_world && !canDamage;
 		bounce = bounce && (bounceCount == -1 || bounceCount > 0);
 		//assert(collision.c.material);
-		if ( !bounce && collision.c.material && ((collision.c.material->GetSurfaceFlags() & SURF_BOUNCE) || (ownerWeapon && ownerWeapon->ammoType == ownerWeapon->GetAmmoIndexForName("ammo_rocketlauncher")))) {
+		if ( !bounce && collision.c.material && (collision.c.material->GetSurfaceFlags() & SURF_BOUNCE) ){
 			bounce = !projectileFlags.detonate_on_bounce;
 		}
 		
