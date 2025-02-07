@@ -253,7 +253,16 @@ void idProjectile::Create( idEntity* _owner, const idVec3 &start, const idVec3 &
  	physicsObj.SetOrigin( start );
  	physicsObj.SetAxis( axis );
 
- 	physicsObj.GetClipModel()->SetOwner( ignore ? ignore : _owner );
+	idPlayer* playerOwner = nullptr;
+
+	if (_owner->IsType(idPlayer::GetClassType())) {
+		playerOwner = static_cast<idPlayer*>(_owner);
+	}
+
+	if (playerOwner && playerOwner->weapon->ammoType != rvWeapon::GetAmmoIndexForName("ammo_rocketlauncher")) {
+		physicsObj.GetClipModel()->SetOwner(ignore ? ignore : _owner);
+	}
+ 	
 	physicsObj.extraPassEntity = extraPassEntity;
 
 	owner = _owner;
@@ -640,6 +649,7 @@ bool idProjectile::Collide( const trace_t &collision, const idVec3 &velocity, bo
 		return true;
 	}
 
+
 	// allow projectiles to hit triggers (teleports)
 	// predict this on a client
 	if( collision.c.contents & CONTENTS_TRIGGER ) {
@@ -715,10 +725,7 @@ bool idProjectile::Collide( const trace_t &collision, const idVec3 &velocity, bo
  
 	// get the entity the projectile collided with
 	ent = gameLocal.entities[ collision.c.entityNum ];
-	if ( ent == owner.GetEntity() ) {
-		// assert( 0 );		// twhitaker: this isn't necessary
-		return true;
-	}
+
 
  	// just get rid of the projectile when it hits a player in noclip
  	if ( ent->IsType( idPlayer::GetClassType() ) && static_cast<idPlayer *>( ent )->noclip ) {
@@ -735,7 +742,8 @@ bool idProjectile::Collide( const trace_t &collision, const idVec3 &velocity, bo
 
 	// Can the projectile damage?  
 	canDamage = ent->fl.takedamage && !(( collision.c.material != NULL ) && ( collision.c.material->GetSurfaceFlags() & SURF_NODAMAGE ));
-  
+
+
  	// direction of projectile
  	dir = velocity;
  	dir.Normalize();

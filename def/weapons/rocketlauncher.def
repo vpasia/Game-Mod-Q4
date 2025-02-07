@@ -78,6 +78,7 @@ entityDef weapon_rocketlauncher
 	"fireRate"					".2"
 	"reloadRate"				".8"
 	"spread"					"10"
+	"takeBounceDamage"			"1"
 	"burstShots"				"3"
 
 	"ammoRegenStep"				"1"

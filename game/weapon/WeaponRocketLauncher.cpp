@@ -49,7 +49,6 @@ protected:
 
 	bool								idleEmpty;
 
-	int									numAttacks;
 	int									burstShots;
 	int									burstCounter;
 
@@ -133,7 +132,6 @@ void rvWeaponRocketLauncher::Spawn ( void ) {
 	}
 
 	burstShots = spawnArgs.GetInt("burstShots");
-	numAttacks = burstShots * 2;
 	burstCounter = 0;
 
 	SetState ( "Raise", 0 );	
@@ -431,8 +429,9 @@ stateResult_t rvWeaponRocketLauncher::State_Idle( const stateParms_t& parms ) {
 			if ( wsfl.lowerWeapon ) {
 				SetState ( "Lower", 4 );
 				return SRESULT_DONE;
-			}		
-			if ( gameLocal.time > nextAttackTime && wsfl.attack && ( gameLocal.isClient || AmmoInClip ( ) ) ) {
+			}
+
+			if ( gameLocal.time > nextAttackTime && wsfl.attack && ( gameLocal.isClient || AmmoInClip ( ) == ClipSize() ) ) {
 				SetState ( "Fire", 2 );
 				return SRESULT_DONE;
 			}
@@ -455,9 +454,8 @@ stateResult_t rvWeaponRocketLauncher::State_Fire ( const stateParms_t& parms ) {
 		case STAGE_INIT:
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));	
 
-			Attack ( false, numAttacks, spread, 0, 1.0f );
+			Attack ( false, 3, spread, 0, 1.0f );
 			PlayAnim ( ANIMCHANNEL_LEGS, "fire", parms.blendFrames );
-			numAttacks -= 2;
 			burstCounter++;
 
 			return SRESULT_STAGE ( STAGE_WAIT );
@@ -502,15 +500,10 @@ stateResult_t rvWeaponRocketLauncher::State_Rocket_Idle ( const stateParms_t& pa
 			return SRESULT_STAGE ( STAGE_WAIT );
 		
 		case STAGE_WAIT:
-			if ( AmmoAvailable ( ) > AmmoInClip() && !wsfl.attack ) {
-				if ( idleEmpty ) {
+			if ( AmmoAvailable ( ) > AmmoInClip() ) {
+				if ( idleEmpty || AmmoInClip() == 0) {
 					SetRocketState ( "Rocket_Reload", 0 );
 					return SRESULT_DONE;
-				} else {
-					if ( AmmoInClip ( ) == 0 ) {
-						SetRocketState ( "Rocket_Reload", 0 );
-						return SRESULT_DONE;
-					}				
 				}
 			}
 			return SRESULT_WAIT;
@@ -557,10 +550,9 @@ stateResult_t rvWeaponRocketLauncher::State_Rocket_Reload ( const stateParms_t& 
 		
 		case STAGE_WAIT:
 			if ( AnimDone ( ANIMCHANNEL_TORSO, 0 ) ) {				
-				if ( !wsfl.attack && gameLocal.time > nextAttackTime && AmmoInClip ( ) < ClipSize( ) && AmmoAvailable() > AmmoInClip() ) {
+				if ( gameLocal.time > nextAttackTime && AmmoInClip ( ) < ClipSize( ) && AmmoAvailable() > AmmoInClip() ) {
 					SetRocketState ( "Rocket_Reload", 0 );
 				} else {
-					numAttacks = 6;
 					SetRocketState ( "Rocket_Idle", 0 );
 				}
 				return SRESULT_DONE;
