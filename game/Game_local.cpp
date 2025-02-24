@@ -7814,6 +7814,11 @@ idEntity* idGameLocal::HitScan(
 					}
 				}
 			}
+
+			if (owner == gameLocal.GetLocalPlayer()) 
+			{
+				gameLocal.Printf("Returning ent: %s...\n", ent->GetEntityDefName());
+			}
 			
 			// End of reflection
 			return ent;

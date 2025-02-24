@@ -1,46 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\",
+  "WorkspaceRootPath": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Game_local.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Game_local.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|solutionrelative:game\\Game_local.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Weapon.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Weapon.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|solutionrelative:game\\Weapon.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\gamesys\\SysCmds.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\gamesys\\SysCmds.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|solutionrelative:game\\gamesys\\SysCmds.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\weapon\\WeaponRocketLauncher.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\weapon\\WeaponRocketLauncher.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|solutionrelative:game\\weapon\\WeaponRocketLauncher.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Projectile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Projectile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|solutionrelative:game\\Projectile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\weapon\\WeaponBlaster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\weapon\\WeaponBlaster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|solutionrelative:game\\weapon\\WeaponBlaster.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\USERS\\VINCE\\DESKTOP\\SCHOOL CODE\\NJIT\\IT266\\GAME-MOD-Q4\\FRAMEWORK\\USERCMDGEN.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|solutionrelative:FRAMEWORK\\USERCMDGEN.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|solutionrelative:game\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\PlayerView.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\PlayerView.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|solutionrelative:game\\PlayerView.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Player_States.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Player_States.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{49BEC5C6-B964-417A-851E-808886B57430}|game.vcxproj|solutionrelative:game\\Player_States.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\framework\\UsercmdGen.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:framework\\UsercmdGen.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -56,24 +56,23 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "SysCmds.cpp",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\gamesys\\SysCmds.cpp",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\gamesys\\SysCmds.cpp",
               "RelativeDocumentMoniker": "game\\gamesys\\SysCmds.cpp",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\gamesys\\SysCmds.cpp",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\gamesys\\SysCmds.cpp",
               "RelativeToolTip": "game\\gamesys\\SysCmds.cpp",
               "ViewState": "AgIAAGMCAAAAAAAAAAAAAH4CAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-24T02:02:47.967Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T02:02:47.967Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Game_local.cpp",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Game_local.cpp",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Game_local.cpp",
               "RelativeDocumentMoniker": "game\\Game_local.cpp",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Game_local.cpp",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Game_local.cpp",
               "RelativeToolTip": "game\\Game_local.cpp",
-              "ViewState": "AgIAAMQdAAAAAAAAAAAAAOwdAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAHceAAAAAAAAAADwv4seAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-24T01:50:25.281Z",
               "EditorCaption": ""
@@ -82,105 +81,97 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "WeaponRocketLauncher.cpp",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\weapon\\WeaponRocketLauncher.cpp",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\weapon\\WeaponRocketLauncher.cpp",
               "RelativeDocumentMoniker": "game\\weapon\\WeaponRocketLauncher.cpp",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\weapon\\WeaponRocketLauncher.cpp",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\weapon\\WeaponRocketLauncher.cpp",
               "RelativeToolTip": "game\\weapon\\WeaponRocketLauncher.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-24T00:40:06.98Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T00:40:06.98Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Projectile.cpp",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Projectile.cpp",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Projectile.cpp",
               "RelativeDocumentMoniker": "game\\Projectile.cpp",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Projectile.cpp",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Projectile.cpp",
               "RelativeToolTip": "game\\Projectile.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-24T00:40:00.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T00:40:00.637Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "UsercmdGen.h",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\framework\\UsercmdGen.h",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\framework\\UsercmdGen.h",
               "RelativeDocumentMoniker": "framework\\UsercmdGen.h",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\framework\\UsercmdGen.h",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\framework\\UsercmdGen.h",
               "RelativeToolTip": "framework\\UsercmdGen.h",
               "ViewState": "AgIAAKYAAAAAAAAAAAAgwLkAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-23T23:19:35.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T23:19:35.196Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "WeaponBlaster.cpp",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\weapon\\WeaponBlaster.cpp",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\weapon\\WeaponBlaster.cpp",
               "RelativeDocumentMoniker": "game\\weapon\\WeaponBlaster.cpp",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\weapon\\WeaponBlaster.cpp",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\weapon\\WeaponBlaster.cpp",
               "RelativeToolTip": "game\\weapon\\WeaponBlaster.cpp",
               "ViewState": "AgIAAGYAAAAAAAAAAAAAABcAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-23T23:48:47.432Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T23:48:47.432Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "Player.h",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Player.h",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Player.h",
               "RelativeDocumentMoniker": "game\\Player.h",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Player.h",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Player.h",
               "RelativeToolTip": "game\\Player.h",
               "ViewState": "AgIAAAEBAAAAAAAAAAAAABwBAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-23T22:17:59.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T22:17:59.579Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Weapon.cpp",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Weapon.cpp",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Weapon.cpp",
               "RelativeDocumentMoniker": "game\\Weapon.cpp",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Weapon.cpp",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Weapon.cpp",
               "RelativeToolTip": "game\\Weapon.cpp",
               "ViewState": "AgIAAPIKAAAAAAAAAAAYwAYLAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-01-28T16:03:36.787Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T16:03:36.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PlayerView.cpp",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\PlayerView.cpp",
+              "RelativeDocumentMoniker": "game\\PlayerView.cpp",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\PlayerView.cpp",
+              "RelativeToolTip": "game\\PlayerView.cpp",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-23T22:17:39.272Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "PlayerView.cpp",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\PlayerView.cpp",
-              "RelativeDocumentMoniker": "game\\PlayerView.cpp",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\PlayerView.cpp",
-              "RelativeToolTip": "game\\PlayerView.cpp",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-23T22:17:39.272Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
               "Title": "Player_States.cpp",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Player_States.cpp",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Player_States.cpp",
               "RelativeDocumentMoniker": "game\\Player_States.cpp",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Game-Mod-Q4\\game\\Player_States.cpp",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 4\\Game-Mod-Q4\\game\\Player_States.cpp",
               "RelativeToolTip": "game\\Player_States.cpp",
               "ViewState": "AgIAAMwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-23T22:17:23.499Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T22:17:23.499Z"
             }
           ]
         }
