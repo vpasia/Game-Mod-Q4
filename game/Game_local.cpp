@@ -7660,9 +7660,29 @@ idEntity* idGameLocal::HitScan(
 			{
 				idDict dict;
 				idVec3 origin;
-				float yaw = 165;
-				
-				dict.Set("classname", "monster_grunt");
+				float yaw = -165;
+
+				const char* units[] = {
+					"monster_slimy_transfer",
+					"monster_strogg_marine",
+					"monster_grunt",
+					"monster_scientist",
+					"monster_gunner",
+					"monster_berserker",
+					"monster_iron_maiden",
+					"monster_gladiator",
+					"monster_convoy_ground",
+					"monster_stream_protector"
+				};
+
+				int monster_idx = 0;
+
+				if (player->usercmd.impulse >= 0 && player->usercmd.impulse < 10) 
+				{
+					monster_idx = player->usercmd.impulse;
+				}
+				gameLocal.Printf("Selected to Spawn: %s\n", units[monster_idx]);
+				dict.Set("classname", va("%s", units[monster_idx]));
 				dict.Set("angle", va("%f", yaw + 180));
 
 				origin = collisionPoint + idAngles(0, yaw, 0).ToForward() * 80 + idVec3(0, 0, 1);
