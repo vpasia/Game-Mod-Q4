@@ -7664,7 +7664,7 @@ idEntity* idGameLocal::HitScan(
 
 				const char* units[] = {
 					"monster_slimy_transfer",
-					"monster_strogg_marine",
+					"monster_strogg_marine_mgun",
 					"monster_grunt",
 					"monster_scientist",
 					"monster_gunner",
@@ -7685,7 +7685,7 @@ idEntity* idGameLocal::HitScan(
 				dict.Set("classname", va("%s", units[monster_idx]));
 				dict.Set("angle", va("%f", yaw + 180));
 
-				origin = collisionPoint + idAngles(0, yaw, 0).ToForward() * 80 + idVec3(0, 0, 1);
+				origin = collisionPoint;
 				dict.Set("origin", origin.ToString());
 
 				idEntity* newEnt = NULL;
