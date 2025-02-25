@@ -1106,6 +1106,33 @@ void Cmd_Trigger_f( const idCmdArgs &args ) {
 }
 
 /*
+=================
+Cmd_Player_Pos_f
+=================
+*/
+void Cmd_Player_Pos_f(const idCmdArgs& args) {
+	idVec3		origin;
+	idAngles	angles;
+	idPlayer* player;
+
+	player = gameLocal.GetLocalPlayer();
+	if (!player || !gameLocal.CheatsOk()) {
+		return;
+	}
+
+	if (args.Argc() != 1) {
+		gameLocal.Printf("usage: player_pos\n");
+		return;
+	}
+
+	origin = player->GetPhysics()->GetOrigin();
+
+	gameLocal.Printf("Position: %f %f %f\n", origin.x, origin.y, origin.z);
+	gameLocal.Printf("Yaw: %f\n", player->viewAngles.yaw);
+}
+
+
+/*
 ===================
 Cmd_Spawn_f
 ===================
@@ -3090,6 +3117,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand( "listLines",				Cmd_ListDebugLines_f,		CMD_FL_GAME|CMD_FL_CHEAT,	"lists all debug lines" );
 	cmdSystem->AddCommand( "playerModel",			Cmd_PlayerModel_f,			CMD_FL_GAME|CMD_FL_CHEAT,	"sets the given model on the player", idCmdSystem::ArgCompletion_Decl<DECL_MODELDEF> );
 	cmdSystem->AddCommand( "flashlight",			Cmd_Flashlight_f,			CMD_FL_GAME|CMD_FL_CHEAT,	"toggle actor's flashlight", idGameLocal::ArgCompletion_AIName );
+	cmdSystem->AddCommand("player_pos",				Cmd_Player_Pos_f,			CMD_FL_GAME,				"gives information about player position and yaw");
 	
 	cmdSystem->AddCommand( "shuffleTeams",			Cmd_ShuffleTeams_f,			CMD_FL_GAME,				"shuffle teams" );
 // RAVEN BEGIN

@@ -7655,9 +7655,26 @@ idEntity* idGameLocal::HitScan(
 			actualHitEnt   = NULL;
 			start		   = collisionPoint;
 
-			if (owner == gameLocal.GetLocalPlayer()) 
+			idPlayer* player = gameLocal.GetLocalPlayer();
+			if (owner == player && player->weapon->ammoType == rvWeapon::GetAmmoIndexForName("ammo_blaster"))
 			{
-				gameLocal.Printf("%f %f %f\n", collisionPoint.x, collisionPoint.y, collisionPoint.z);
+				idDict dict;
+				idVec3 origin;
+				float yaw = 165;
+				
+				dict.Set("classname", "monster_grunt");
+				dict.Set("angle", va("%f", yaw + 180));
+
+				origin = collisionPoint + idAngles(0, yaw, 0).ToForward() * 80 + idVec3(0, 0, 1);
+				dict.Set("origin", origin.ToString());
+
+				idEntity* newEnt = NULL;
+				gameLocal.SpawnEntityDef(dict, &newEnt);
+
+				if (newEnt) 
+				{
+					gameLocal.Printf("Spawned Entity '%s'\n", newEnt->name.c_str());
+				}
 			}
 
 			// Keep tracing if we hit water
@@ -7815,10 +7832,6 @@ idEntity* idGameLocal::HitScan(
 				}
 			}
 
-			if (owner == gameLocal.GetLocalPlayer()) 
-			{
-				gameLocal.Printf("Returning ent: %s...\n", ent->GetEntityDefName());
-			}
 			
 			// End of reflection
 			return ent;
