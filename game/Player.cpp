@@ -9300,6 +9300,11 @@ void idPlayer::Think( void ) {
 		}
 	}
 
+	if (gameLocal.inCinematic) 
+	{
+		gameLocal.SkipCinematic();
+	}
+
 	if ( !gameLocal.usercmds ) {
 		return;
 	}
