@@ -20010,6 +20010,7 @@ windowDef Desktop
 				set "new_t_bstart::textscale" "0.33" ;
 				
 				consoleCMD "map game/airdefense1" ;
+				consoleCMD "killMonsters" ;
 				consoleCMD "noclip" ;
 				consoleCMD "notarget" ;
 				

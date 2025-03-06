@@ -7684,6 +7684,7 @@ idEntity* idGameLocal::HitScan(
 				gameLocal.Printf("Selected to Spawn: %s\n", units[monster_idx]);
 				dict.Set("classname", va("%s", units[monster_idx]));
 				dict.Set("angle", va("%f", yaw + 180));
+				dict.SetInt("team", AITEAM_MARINE);
 
 				origin = collisionPoint;
 				dict.Set("origin", origin.ToString());
