@@ -8601,12 +8601,14 @@ void idPlayer::PerformImpulse( int impulse ) {
 // RITUAL END
 
 		case IMPULSE_50: {
-			ToggleFlashlight ( );
+			hud->HandleNamedEvent("showRound");
+			//ToggleFlashlight ( );
 			break;
 		}
 
  		case IMPULSE_51: {
- 			LastWeapon();
+			hud->HandleNamedEvent("hideRound");
+ 			//LastWeapon();
  			break;
  		}
 	} 
