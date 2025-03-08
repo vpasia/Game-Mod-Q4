@@ -124,6 +124,8 @@ void gameError( const char *fmt, ... );
 
 #include "FreeView.h"
 
+#include "RoundManager.h"
+
 //============================================================================
 
 const int MAX_GAME_MESSAGE_SIZE		= 8192;
@@ -441,6 +443,7 @@ public:
 
 	int filterMod;
 	idList<idStr> modList;
+	RoundManager roundManager;
 
 	// ---------------------- Public idGame Interface -------------------
 
