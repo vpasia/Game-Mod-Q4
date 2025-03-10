@@ -2375,7 +2375,7 @@ windowDef Desktop
 			rect	0,180,640,100
 			visible	1
 			forecolor	1,1,1,1
-			text	"Round"
+			text	"gui::rtext"
 			textscale	1
 			textalign	1
 			font	"fonts/r_strogg"

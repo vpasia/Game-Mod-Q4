@@ -336,6 +336,10 @@
     <ClCompile Include="game\Player_States.cpp" />
     <ClCompile Include="game\Projectile.cpp" />
     <ClCompile Include="game\Pvs.cpp" />
+    <ClCompile Include="game\RoundManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="game\script\ScriptFuncUtility.cpp" />
     <ClCompile Include="game\script\Script_Compiler.cpp" />
     <ClCompile Include="game\script\Script_Interpreter.cpp" />
@@ -457,6 +461,9 @@
     <ClInclude Include="game\PlayerView.h" />
     <ClInclude Include="game\Projectile.h" />
     <ClInclude Include="game\Pvs.h" />
+    <ClInclude Include="game\RoundManager.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="game\script\ScriptFuncUtility.h" />
     <ClInclude Include="game\script\Script_Compiler.h" />
     <ClInclude Include="game\script\Script_Interpreter.h" />

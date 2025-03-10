@@ -690,7 +690,7 @@ windowDef Desktop
 			rect	0,0,640,480
 			visible	1
 			background	"gfx/guis/mainmenu/bg_darkgrad"
-			matcolor	0,1,1,1
+			matcolor	0,0.501,1,1
 		}
 		windowDef screen
 		{
@@ -1880,98 +1880,6 @@ windowDef Desktop
 				textscale	.25
 				font	"fonts/marine"
 			}
-			windowDef mp_b1
-			{
-				rect	0,169,413,52
-				visible	1
-				background	"gfx/guis/mainmenu/b1_dark"
-				matcolor	1,1,1,0.4
-			}
-			windowDef mp_b2
-			{
-				rect	0,199,413,52
-				visible	1
-				background	"gfx/guis/mainmenu/b1_dark"
-				matcolor	1,1,1,0.4
-			}
-			windowDef mp_b3
-			{
-				rect	0,229,413,52
-				visible	1
-				background	"gfx/guis/mainmenu/b1_dark"
-				matcolor	1,1,1,0.4
-			}
-			windowDef mp_b4
-			{
-				rect	0,259,413,52
-				visible	1
-				background	"gfx/guis/mainmenu/b1_dark"
-				matcolor	1,1,1,0.4
-			}
-			windowDef mp_t_b1
-			{
-				rect	44,181,320,23
-				visible	1
-				forecolor	1,1,1,0.8
-				text	"#str_200023"
-				textscale	.31
-				font	"fonts/marine"
-			}
-			windowDef mp_t_b2
-			{
-				rect	44,211,320,23
-				visible	1
-				forecolor	1,1,1,0.8
-				text	"#str_200024"
-				textscale	.31
-				font	"fonts/marine"
-			}
-			windowDef mp_t_b3
-			{
-				rect	44,241,320,23
-				visible	1
-				forecolor	1,1,1,0.8
-				text	"#str_200026"
-				textscale	.31
-				font	"fonts/marine"
-			}
-			windowDef mp_t_b4
-			{
-				rect	44,271,320,23
-				visible	1
-				forecolor	1,1,1,0.8
-				text	"#str_200009"
-				textscale	.31
-				font	"fonts/marine"
-			}
-			windowDef mp_b1_corner
-			{
-				rect	32,188,12,12
-				visible	1
-				background	"gfx/guis/mainmenu/corner"
-				matcolor	0.564,0.603,0.286,0.4
-			}
-			windowDef mp_b2_corner
-			{
-				rect	32,218,12,12
-				visible	1
-				background	"gfx/guis/mainmenu/corner"
-				matcolor	0.564,0.603,0.286,0.4
-			}
-			windowDef mp_b3_corner
-			{
-				rect	32,248,12,12
-				visible	1
-				background	"gfx/guis/mainmenu/corner"
-				matcolor	0.564,0.603,0.286,0.4
-			}
-			windowDef mp_b4_corner
-			{
-				rect	32,278,12,12
-				visible	1
-				background	"gfx/guis/mainmenu/corner"
-				matcolor	0.564,0.603,0.286,0.4
-			}
 			windowDef mp_back
 			{
 				rect	532,441,109,30
@@ -1994,6 +1902,185 @@ windowDef Desktop
 				text	"#str_200018"
 				textscale	.28
 				font	"fonts/marine"
+			}
+			windowDef mod_title
+			{
+				rect	349,47,293,53
+				visible	1
+				forecolor	0,1,0,1
+				text	"Quake 4 Siege"
+				textscale	0.6
+				font	"fonts/lowpixel"
+			}
+			windowDef help_text_1
+			{
+				rect	-1,103,645,24
+				visible	1
+				forecolor	0,1,0,1
+				text	"Welcome Commander! In Quake Siege, your goal is to survive endless waves of enemy assaults by strategically building"
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_2
+			{
+				rect	0,120,645,24
+				visible	1
+				forecolor	0,1,0,1
+				text	"and deploying your forces."
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_pt1_t
+			{
+				rect	1,139,645,24
+				visible	1
+				forecolor	0.501,1,0,1
+				text	"1. Economy and Points"
+				textscale	0.25
+				font	"fonts/marine"
+				nowrap	1
+			}
+			windowDef help_text_pt1_1
+			{
+				rect	-6,154,645,24
+				visible	1
+				forecolor	1,1,1,1
+				text	"    - At the start of each round, you're granted a set amount of points based on how many rounds you've survived"
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_pt1_2
+			{
+				rect	-6,167,645,24
+				visible	1
+				forecolor	1,1,1,1
+				text	"    - These points are your resource to place down units, so choose wisely."
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_pt2_t
+			{
+				rect	0,184,645,24
+				visible	1
+				forecolor	0.501,1,0,1
+				text	"2. Purchasing Units"
+				textscale	0.25
+				font	"fonts/marine"
+				nowrap	1
+			}
+			windowDef help_text_pt2_1
+			{
+				rect	-6,200,645,24
+				visible	1
+				forecolor	1,1,1,1
+				text	"    - At the end of each round, you can open the custom buy menu to view the roster of available units."
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_pt2_2
+			{
+				rect	-6,215,645,24
+				visible	1
+				forecolor	1,1,1,1
+				text	"    - Based on how many rounds you've survived, you will be awarded currency to buy new units."
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_pt3_t
+			{
+				rect	0,225,645,24
+				visible	1
+				forecolor	0.501,1,0,1
+				text	"3. Starting the Battle"
+				textscale	0.25
+				font	"fonts/marine"
+				nowrap	1
+			}
+			windowDef help_text_pt3_1
+			{
+				rect	-6,241,645,24
+				visible	1
+				forecolor	1,1,1,1
+				text	"    - Once your army is set, hit the \"space\" button to launch the simulation. Watch the battle unfold and see if your "
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_pt3_2
+			{
+				rect	-6,254,645,24
+				visible	1
+				forecolor	1,1,1,1
+				text	"    strategy holds against the oncoming wave."
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_pt4_t
+			{
+				rect	0,268,645,24
+				visible	1
+				forecolor	0.501,1,0,1
+				text	"4. Battle Strategy and Unit Roles"
+				textscale	0.25
+				font	"fonts/marine"
+				nowrap	1
+			}
+			windowDef help_text_pt4_1
+			{
+				rect	-6,286,645,24
+				visible	1
+				forecolor	1,1,1,1
+				text	"    - Each unit type is designed with strengths and weaknesses."
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_pt4_2
+			{
+				rect	-6,299,645,24
+				visible	1
+				forecolor	1,1,1,1
+				text	"    - Learn the enemy formations and adapt your tactics."
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_pt5_t
+			{
+				rect	0,315,645,24
+				visible	1
+				forecolor	0.501,1,0,1
+				text	"5. Progression and Increasing Challenge"
+				textscale	0.25
+				font	"fonts/marine"
+				nowrap	1
+			}
+			windowDef help_text_pt5_1
+			{
+				rect	-7,332,645,24
+				visible	1
+				forecolor	1,1,1,1
+				text	"    - As you progress, enemy forces grow larger and more diverse. You must adjust your strategy and unit composition to survive."
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
+			}
+			windowDef help_text_pt5_2
+			{
+				rect	-7,347,645,24
+				visible	1
+				forecolor	1,1,1,1
+				text	"    - Your main goal is to last as many rounds as possible. Your strategic skills will pave the way to victory."
+				textscale	0.2
+				font	"fonts/lowpixel"
+				nowrap	1
 			}
 		}
 		windowDef p_mp_browse
@@ -22513,219 +22600,6 @@ windowDef Desktop
 				set "desktop::active" "1" ;
 				resettime "anim_pop_sndadvIn" "0" ;
 				namedevent "p_anims::popReset0" ;
-			}
-
-		}
-		windowDef mp_b_gamebrowser
-		{
-			rect	24,181,333,26
-			visible	0
-
-			onMouseEnter {
-				if ("desktop::active" == 0) {
-					stoptransitions "mp_b_gamebrowser" ;
-					
-					set "mp_b1::matcolor_w" "1" ;
-					transition "mp_t_b1::forecolor" "$desktop::white_8" "$desktop::orange" "0" ; 
-					transition "mp_b1_corner::matcolor" "$desktop::corner" "$desktop::orange" "0" ;
-					
-					set "mp_t_b1::textscale" "0.32" ; 
-					
-					set "cmd" "play main_menu_mouseover" ;	
-				}
-			}
-
-			onMouseExit {
-				if ("desktop::active" == 0) {
-					transition "mp_b1::matcolor_w" "1" "0.4" "300" ;
-					transition "mp_t_b1::forecolor"  "$desktop::orange" "$desktop::white_8" "300" ; 
-					transition "mp_b1_corner::matcolor"  "$desktop::orange" "$desktop::corner" "300" ; 
-					
-					transition "mp_t_b1::textscale" "0.32" "0.31" "300" ;
-				}
-			}
-
-			onAction {
-				set "desktop::active" "1" ;
-				resettime "anim_mpOut" "0" ;
-				set "desktop::dest" "14" ;
-				
-				set "mp_browse_b1::matcolor_w" "0.4" ;
-				set "mp_browse_t_b1::forecolor" "$desktop::white_8" ; 
-				set "mp_browse_b1_corner::matcolor" "$desktop::corner" ; 
-				set "mp_browse_t_b1::textscale" "0.31" ;
-				set "mp_browse_b2::matcolor_w" "0.4" ;
-				set "mp_browse_t_b2::forecolor" "$desktop::white_8" ; 
-				set "mp_browse_b2_corner::matcolor" "$desktop::corner" ; 
-				set "mp_browse_t_b2::textscale" "0.31" ;
-				set "mp_browse_b3::matcolor_w" "0.4" ;
-				set "mp_browse_t_b3::forecolor" "$desktop::white_8" ; 
-				set "mp_browse_b3_corner::matcolor" "$desktop::corner" ; 
-				set "mp_browse_t_b3::textscale" "0.31" ;
-				set "mp_browse_b4::matcolor_w" "0.4" ;
-				set "mp_browse_t_b4::forecolor" "$desktop::white_8" ; 
-				set "mp_browse_b4_corner::matcolor" "$desktop::corner" ; 
-				set "mp_browse_t_b4::textscale" "0.31" ;
-				set "mp_browse_b5::matcolor_w" "0.4" ;
-				set "mp_browse_t_b5::forecolor" "$desktop::white_8" ; 
-				set "mp_browse_b5_corner::matcolor" "$desktop::corner" ; 
-				set "mp_browse_t_b5::textscale" "0.31" ;
-				set "mp_browse_b6::matcolor_w" "0.4" ;
-				set "mp_browse_t_b6::forecolor" "$desktop::white_8" ; 
-				set "mp_browse_b6_corner::matcolor" "$desktop::corner" ; 
-				set "mp_browse_t_b6::textscale" "0.31" ;
-				
-				if ("desktop::sort" != 4) {
-					set "mp_browse_servername::forecolor" "$desktop::white_8" ;
-				} 
-				if ("desktop::sort" != 5) {
-					set "mp_browse_ping::forecolor" "$desktop::white_8" ;
-				} 
-				if ("desktop::sort" != 6) {
-					set "mp_browse_players::forecolor" "$desktop::white_8" ;
-				}
-				if ("desktop::sort" != 7) {
-					set "mp_browse_gametype::forecolor" "$desktop::white_8" ;
-				} 
-				if ("desktop::sort" != 8) {
-					set "mp_browse_map::forecolor" "$desktop::white_8" ;
-				}
-				
-				set "cmd" "play main_menu_selection" ;
-			}
-
-		}
-		windowDef mp_b_friendslist
-		{
-			rect	24,211,333,26
-			visible	0
-
-			onMouseEnter {
-				if ("desktop::active" == 0) {
-					stoptransitions "mp_b_friendslist" ;
-					
-					set "mp_b2::matcolor_w" "1" ;
-					transition "mp_t_b2::forecolor" "$desktop::white_8" "$desktop::orange" "0" ; 
-					transition "mp_b2_corner::matcolor" "$desktop::corner" "$desktop::orange" "0" ;
-					
-					set "mp_t_b2::textscale" "0.32" ; 
-					
-					set "cmd" "play main_menu_mouseover" ;	
-				}
-			}
-
-			onMouseExit {
-				if ("desktop::active" == 0) {
-					transition "mp_b2::matcolor_w" "1" "0.4" "300" ;
-					transition "mp_t_b2::forecolor"  "$desktop::orange" "$desktop::white_8" "300" ; 
-					transition "mp_b2_corner::matcolor"  "$desktop::orange" "$desktop::corner" "300" ; 
-					
-					transition "mp_t_b2::textscale" "0.32" "0.31" "300" ;
-				}
-			}
-
-			onAction {
-				set "desktop::active" "1" ;
-				resettime "anim_mpOut" "0" ;
-				set "desktop::dest" "15" ;
-				
-				set "cmd" "play main_menu_selection" ;
-			}
-
-		}
-		windowDef mp_b_createserver
-		{
-			rect	24,241,333,26
-			visible	0
-
-			onMouseEnter {
-				if ("desktop::active" == 0) {
-					stoptransitions "mp_b_createserver" ;
-					
-					set "mp_b3::matcolor_w" "1" ;
-					transition "mp_t_b3::forecolor" "$desktop::white_8" "$desktop::orange" "0" ; 
-					transition "mp_b3_corner::matcolor" "$desktop::corner" "$desktop::orange" "0" ;
-					
-					set "mp_t_b3::textscale" "0.32" ; 
-					
-					set "cmd" "play main_menu_mouseover" ;	
-				}
-			}
-
-			onMouseExit {
-				if ("desktop::active" == 0) {
-					transition "mp_b3::matcolor_w" "1" "0.4" "300" ;
-					transition "mp_t_b3::forecolor"  "$desktop::orange" "$desktop::white_8" "300" ; 
-					transition "mp_b3_corner::matcolor"  "$desktop::orange" "$desktop::corner" "300" ; 
-					
-					transition "mp_t_b3::textscale" "0.32" "0.31" "300" ;
-				}
-			}
-
-			onAction {
-				set "desktop::active" "1" ;
-				resettime "anim_mpOut" "0" ;
-				set "desktop::dest" "17" ;
-				
-				set "mp_create_b1::matcolor_w" "0.4" ;
-				set "mp_create_b2::matcolor_w" "0.4" ;
-				set "mp_create_b3::matcolor_w" "0.4" ;
-				set "mp_create_b4::matcolor_w" "0.4" ;
-				set "mp_create_b5::matcolor_w" "0.4" ;
-				set "mp_create_b6::matcolor_w" "0.4" ;
-				set "mp_create_b7::matcolor_w" "0.4" ;
-				set "mp_create_b8::matcolor_w" "0.4" ;
-				set "mp_create_b9::matcolor_w" "0.4" ;
-				set "mp_create_b10::matcolor_w" "0.4" ;
-				set "mp_create_b11::matcolor_w" "0.4" ;
-				set "mp_create_advbtn::matcolor_w" "0.4" ;
-				set "mp_create_adv::forecolor" "$desktop::white_8" ; 
-				set "mp_create_adv_corner::matcolor" "$desktop::corner" ; 
-				set "mp_create_adv::textscale" "0.26" ;
-				set "mp_create_serverbtn::matcolor_w" "0.4" ;
-				set "mp_create_server::forecolor" "$desktop::white_8" ; 
-				set "mp_create_server_corner::matcolor" "$desktop::corner" ; 
-				set "mp_create_server::textscale" "0.32" ;
-				
-				set "cmd" "play main_menu_selection" ;
-			}
-
-		}
-		windowDef mp_b_settings
-		{
-			rect	24,271,333,26
-			visible	0
-
-			onMouseEnter {
-				if ("desktop::active" == 0) {
-					stoptransitions "mp_b_settings" ;
-					
-					set "mp_b4::matcolor_w" "1" ;
-					transition "mp_t_b4::forecolor" "$desktop::white_8" "$desktop::orange" "0" ; 
-					transition "mp_b4_corner::matcolor" "$desktop::corner" "$desktop::orange" "0" ;
-					
-					set "mp_t_b4::textscale" "0.32" ; 
-					
-					set "cmd" "play main_menu_mouseover" ;	
-				}
-			}
-
-			onMouseExit {
-				if ("desktop::active" == 0) {
-					transition "mp_b4::matcolor_w" "1" "0.4" "300" ;
-					transition "mp_t_b4::forecolor"  "$desktop::orange" "$desktop::white_8" "300" ; 
-					transition "mp_b4_corner::matcolor"  "$desktop::orange" "$desktop::corner" "300" ; 
-					
-					transition "mp_t_b4::textscale" "0.32" "0.31" "300" ;
-				}
-			}
-
-			onAction {
-				set "desktop::active" "1" ;
-				resettime "anim_mpOut" "0" ;
-				set "desktop::dest" "18" ;
-				
-				set "cmd" "play main_menu_selection" ;
 			}
 
 		}

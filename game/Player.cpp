@@ -8601,6 +8601,8 @@ void idPlayer::PerformImpulse( int impulse ) {
 // RITUAL END
 
 		case IMPULSE_50: {
+			gameLocal.Printf("Setting Round to %d", gameLocal.roundManager.GetRound());
+			hud->SetStateString("rtext", va("Round %d", gameLocal.roundManager.GetRound()));
 			hud->HandleNamedEvent("showRound");
 			//ToggleFlashlight ( );
 			break;

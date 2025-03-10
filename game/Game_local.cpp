@@ -7660,7 +7660,7 @@ idEntity* idGameLocal::HitScan(
 			{
 				idDict dict;
 				idVec3 origin;
-				float yaw = -165;
+				float yaw = -177;
 
 				const char* units[] = {
 					"monster_slimy_transfer",
@@ -7681,9 +7681,9 @@ idEntity* idGameLocal::HitScan(
 				{
 					monster_idx = player->usercmd.impulse;
 				}
-				gameLocal.Printf("Selected to Spawn: %s\n", units[monster_idx]);
+				gameLocal.Printf("Selected to Spawn: %s at pos(%f, %f, %f)\n", units[monster_idx], collisionPoint.x, collisionPoint.y, collisionPoint.z);
 				dict.Set("classname", va("%s", units[monster_idx]));
-				dict.Set("angle", va("%f", yaw + 180));
+				dict.Set("angle", va("%f", yaw));
 				dict.SetInt("team", AITEAM_MARINE);
 
 				origin = collisionPoint;

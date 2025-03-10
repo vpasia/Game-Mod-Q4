@@ -1131,7 +1131,6 @@ void Cmd_Player_Pos_f(const idCmdArgs& args) {
 	gameLocal.Printf("Yaw: %f\n", player->viewAngles.yaw);
 }
 
-
 /*
 ===================
 Cmd_Spawn_f
