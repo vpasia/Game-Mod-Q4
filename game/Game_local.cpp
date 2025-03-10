@@ -7682,20 +7682,30 @@ idEntity* idGameLocal::HitScan(
 					monster_idx = player->usercmd.impulse;
 				}
 				gameLocal.Printf("Selected to Spawn: %s at pos(%f, %f, %f)\n", units[monster_idx], collisionPoint.x, collisionPoint.y, collisionPoint.z);
-				dict.Set("classname", va("%s", units[monster_idx]));
-				dict.Set("angle", va("%f", yaw));
-				dict.SetInt("team", AITEAM_MARINE);
-
-				origin = collisionPoint;
-				dict.Set("origin", origin.ToString());
-
-				idEntity* newEnt = NULL;
-				gameLocal.SpawnEntityDef(dict, &newEnt);
-
-				if (newEnt) 
+				
+				if ((collisionPoint.x > 9700 && collisionPoint.x < 11420) && (collisionPoint.y > -9000 && collisionPoint.y < -7600)) 
 				{
-					gameLocal.Printf("Spawned Entity '%s'\n", newEnt->name.c_str());
+					dict.Set("classname", va("%s", units[monster_idx]));
+					dict.Set("angle", va("%f", yaw));
+					dict.SetInt("team", AITEAM_MARINE);
+
+					origin = collisionPoint;
+					dict.Set("origin", origin.ToString());
+
+					idEntity* newEnt = NULL;
+					gameLocal.SpawnEntityDef(dict, &newEnt);
+
+					if (newEnt)
+					{
+						gameLocal.Printf("Spawned Entity '%s'\n", newEnt->name.c_str());
+					}
 				}
+				else 
+				{
+					gameLocal.Printf("Out of Bounds.\n");
+					player->hud->HandleNamedEvent("outOfBounds");
+				}
+				
 			}
 
 			// Keep tracing if we hit water
