@@ -8505,18 +8505,22 @@ void idPlayer::PerformImpulse( int impulse ) {
 			break;
 		}
 		case IMPULSE_19: {
-/*		
-			// when we're not in single player, IMPULSE_19 is used for showScores
-			// otherwise it does IMPULSE_12 (PDA)
-			if ( !gameLocal.isMultiplayer ) {
-				if ( !objectiveSystemOpen ) {
-					if ( weapon ) {
-						weapon->Hide ();
+			int playerUnitCount = gameLocal.roundManager.playerUnits.Num();
+
+			if (playerUnitCount > 0) 
+			{
+				
+				for (int i = 0; i < playerUnitCount; i++) 
+				{
+					idEntity* playerUnit = gameLocal.entities[gameLocal.roundManager.playerUnits[i]];
+					gameLocal.roundManager.RemovePlayerUnit(gameLocal.roundManager.playerUnits[i]);
+
+					if (playerUnit) 
+					{
+						playerUnit->PostEventMS(&EV_Remove, 0);
 					}
 				}
-				ToggleMap();
 			}
-*/
 			break;
 		}
 		case IMPULSE_20: {
@@ -8601,16 +8605,12 @@ void idPlayer::PerformImpulse( int impulse ) {
 // RITUAL END
 
 		case IMPULSE_50: {
-			gameLocal.Printf("Setting Round to %d", gameLocal.roundManager.GetRound());
-			hud->SetStateString("rtext", va("Round %d", gameLocal.roundManager.GetRound()));
-			hud->HandleNamedEvent("showRound");
 			//ToggleFlashlight ( );
 			break;
 		}
 
  		case IMPULSE_51: {
-			hud->HandleNamedEvent("hideRound");
- 			//LastWeapon();
+ 			LastWeapon();
  			break;
  		}
 	} 
@@ -9486,6 +9486,19 @@ void idPlayer::Think( void ) {
 		acc->dir[0] = acc->dir[2] = 0;
 	}
 
+	if (!gameLocal.roundManager.roundStarted && usercmd.upmove > 0)
+	{
+		if (gameLocal.roundManager.playerUnits.Num() > 0) 
+		{
+			hud->HandleNamedEvent("battleStart");
+			gameLocal.roundManager.StartRound();
+		}
+		else 
+		{
+			hud->HandleNamedEvent("placeDownWarning");
+		}
+	}
+
 	// freelook centering
 	if ( ( usercmd.buttons ^ oldCmd.buttons ) & BUTTON_MLOOK ) {
 		centerView.Init( gameLocal.time, 200, viewAngles.pitch, 0 );
@@ -10097,7 +10110,7 @@ void idPlayer::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
 		return;
 	}
 	
- 	if ( !fl.takedamage || noclip || spectating || gameLocal.inCinematic ) {
+ 	if ( !fl.takedamage || spectating || gameLocal.inCinematic ) {
 		// If in vehicle let it know that something is trying to hurt the invisible player
 		if ( IsInVehicle ( ) ) {
 			const idDict *damageDict = gameLocal.FindEntityDefDict( damageDefName, false );

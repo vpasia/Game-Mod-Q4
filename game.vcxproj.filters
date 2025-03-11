@@ -516,7 +516,9 @@
     <ClCompile Include="game\mp\stats\StatWindow.cpp">
       <Filter>Game\MP\Stats</Filter>
     </ClCompile>
-    <ClCompile Include="game\RoundManager.cpp" />
+    <ClCompile Include="game\RoundManager.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game\Actor.h">
@@ -831,7 +833,9 @@
     <ClInclude Include="game\mp\stats\StatWindow.h">
       <Filter>Game\MP\Stats</Filter>
     </ClInclude>
-    <ClInclude Include="game\RoundManager.h" />
+    <ClInclude Include="game\RoundManager.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="game\Game.def" />

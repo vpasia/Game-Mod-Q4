@@ -3682,6 +3682,20 @@ void idAI::OnDeath( void ){
 
 	aiManager.RemoveTeammate ( this );
 
+	if (gameLocal.roundManager.roundStarted) 
+	{
+		if (team == AITEAM_MARINE)
+		{
+			gameLocal.roundManager.RemovePlayerUnit(entityNumber);
+		}
+		else 
+		{
+			gameLocal.roundManager.RemoveEnemyUnit(entityNumber);
+		}
+	}
+
+	
+
 	ExecScriptFunction( funcs.death );
 
 /* DONT DROP ANYTHING FOR NOW

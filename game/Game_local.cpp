@@ -587,6 +587,8 @@ void idGameLocal::Init( void ) {
 // RAVEN END
 
 	networkSystem->AddSortFunction( filterByMod );
+
+	roundManager.Init();
 }
 
 /*
@@ -3664,6 +3666,11 @@ TIME_THIS_SCOPE("idGameLocal::RunFrame - gameDebug.BeginFrame()");
 			for( cent = clientSpawnedEntities.Next(); cent != NULL; cent = cent->spawnNode.Next() ) {
 				cent->Think();			
 			}	
+		}
+
+		if (player->noclip) 
+		{
+			roundManager.Think();
 		}
 
 		// service any pending events
@@ -7692,12 +7699,19 @@ idEntity* idGameLocal::HitScan(
 					origin = collisionPoint;
 					dict.Set("origin", origin.ToString());
 
+					dict.SetFloat("visRange", 2048);
+					dict.SetFloat("earRange", 2048);
+					dict.SetFloat("awareRange", 2048);
+
+					dict.SetInt("notarget", 1);
+
 					idEntity* newEnt = NULL;
 					gameLocal.SpawnEntityDef(dict, &newEnt);
 
 					if (newEnt)
 					{
-						gameLocal.Printf("Spawned Entity '%s'\n", newEnt->name.c_str());
+						gameLocal.Printf("Spawned Player Entity '%s'\n", newEnt->name.c_str());
+						gameLocal.roundManager.AddPlayerUnit(newEnt->entityNumber);
 					}
 				}
 				else 
