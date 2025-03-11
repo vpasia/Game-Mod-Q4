@@ -58,7 +58,7 @@ void RoundManager::SpawnEnemyUnits()
 
 	idDict dict;
 	idVec3 origin;
-	float yaw = 177;
+	float yaw = 0;
 
 	bool validPositionSelected = false;
 
@@ -71,15 +71,24 @@ void RoundManager::SpawnEnemyUnits()
 
 		while (!validPositionSelected) 
 		{
-			origin = CENTER_SPAWN_POINT + idVec3(10 + (10 * round / 2.0 * gameLocal.random.CRandomFloat()), 10 + (10 * round / 2.0 * gameLocal.random.CRandomFloat()), 0);
+			float randomOffsetX = gameLocal.random.CRandomFloat();
+			float randomOffsetY = gameLocal.random.CRandomFloat();
+
+			float xRight = randomOffsetX > 0 ? 1 : -1;
+			float yRight = randomOffsetY > 0 ? 1 : -1;
+
+			idVec3 offset(xRight * (150 + (10 * round * randomOffsetX)), yRight * (150 + (10 * round * randomOffsetY)), 0);
+			origin = CENTER_SPAWN_POINT + offset;
+
+			gameLocal.Printf("Offset (%f, %f, %f)\n", offset.x, offset.y, offset.z);
 			savedSpawnPositions.GetBool(va("%f%f%f", origin.x, origin.y, origin.z), "1", validPositionSelected);
 		}
 
 		dict.Set("origin", origin.ToString());
 
-		dict.SetFloat("visRange", 2048);
-		dict.SetFloat("earRange", 2048);
-		dict.SetFloat("awareRange", 2048);
+		dict.SetFloat("visRange", 9000);
+		dict.SetFloat("earRange", 9000);
+		dict.SetFloat("awareRange", 9000);
 
 		dict.SetInt("notarget", 1);
 
@@ -88,9 +97,10 @@ void RoundManager::SpawnEnemyUnits()
 
 		if (newEnt) 
 		{
-			gameLocal.Printf("Spawned Enemy Entity '%s'\n", newEnt->name.c_str());
+			gameLocal.Printf("Spawned Enemy Entity '%s' (%f, %f, %f)\n", newEnt->name.c_str(), origin.x, origin.y, origin.z);
 			enemyUnits.Append(newEnt->entityNumber);
 			savedSpawnPositions.SetBool(va("%f%f%f", origin.x, origin.y, origin.z), false);
+			validPositionSelected = false;
 		}
 	}
 }
@@ -110,27 +120,53 @@ void RoundManager::RemovePlayerUnit(int entityNum)
 	playerUnits.Remove(entityNum);
 }
 
+void RoundManager::ClearPlayerUnits() 
+{
+	for (int i = 0; i < playerUnits.Num(); i++)
+	{
+		idEntity* playerUnit = gameLocal.entities[playerUnits[i]];
+		RemovePlayerUnit(playerUnits[i]);
+
+		if (playerUnit)
+		{
+			playerUnit->PostEventMS(&EV_Remove, 0);
+		}
+	}
+}
+
 void RoundManager::Think() 
 {
-	if (roundEnded) 
+	idPlayer* player = gameLocal.GetLocalPlayer();
+
+	if (!player)
 	{
-		round = round > 1 ? round + 1 : round;
-		idPlayer* player = gameLocal.GetLocalPlayer();
+		return;
+	}
 
-		if (!player) 
+	if (roundEnded && !player->pfl.dead) 
+	{
+		
+
+		if (roundStarted)
 		{
-			return;
+			roundStarted = false;
+
+			if (playerUnits.Num() == 0)
+			{
+				round = 1;
+				player->Kill(false, false);
+
+				return;
+			}
+			else if (enemyUnits.Num() == 0) 
+			{
+				round++;
+				ClearPlayerUnits();
+				player->Teleport(idVec3(7646, 12800, 2059), player->spawnAngles, NULL);
+			}
 		}
 
-		if (roundStarted && playerUnits.Num() == 0)
-		{
-			round = 1;
-			player->Kill(false, false);
-
-			return;
-		}
-
-		player->hud->SetStateString("rtext", va("Round %d", gameLocal.roundManager.round));
+		player->hud->SetStateString("rtext", va("Round %d", round));
 		player->hud->HandleNamedEvent("showRound");
 
 		roundEnded = false;

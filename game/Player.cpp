@@ -8505,21 +8505,9 @@ void idPlayer::PerformImpulse( int impulse ) {
 			break;
 		}
 		case IMPULSE_19: {
-			int playerUnitCount = gameLocal.roundManager.playerUnits.Num();
-
-			if (playerUnitCount > 0) 
+			if (gameLocal.roundManager.playerUnits.Num() > 0)
 			{
-				
-				for (int i = 0; i < playerUnitCount; i++) 
-				{
-					idEntity* playerUnit = gameLocal.entities[gameLocal.roundManager.playerUnits[i]];
-					gameLocal.roundManager.RemovePlayerUnit(gameLocal.roundManager.playerUnits[i]);
-
-					if (playerUnit) 
-					{
-						playerUnit->PostEventMS(&EV_Remove, 0);
-					}
-				}
+				gameLocal.roundManager.ClearPlayerUnits();
 			}
 			break;
 		}
@@ -9304,11 +9292,6 @@ void idPlayer::Think( void ) {
 		}
 	}
 
-	if (gameLocal.inCinematic) 
-	{
-		gameLocal.SkipCinematic();
-	}
-
 	if ( !gameLocal.usercmds ) {
 		return;
 	}
@@ -9526,7 +9509,10 @@ void idPlayer::Think( void ) {
 	}
 // RAVEN END
 
-	Move();
+	if (gameLocal.roundManager.roundStarted) 
+	{
+		Move();
+	}
 
 	if ( !g_stopTime.GetBool() ) {
  		if ( !noclip && !spectating && ( health > 0 ) && !IsHidden() ) {

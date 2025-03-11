@@ -20096,7 +20096,7 @@ windowDef Desktop
 				set "new_bstart_corner::matcolor" "$desktop::corner" ; 
 				set "new_t_bstart::textscale" "0.33" ;
 				
-				consoleCMD "map game/airdefense1" ;
+				consoleCMD "map game/mcc_landing" ;
 				consoleCMD "killMonsters" ;
 				consoleCMD "noclip" ;
 				consoleCMD "notarget" ;
