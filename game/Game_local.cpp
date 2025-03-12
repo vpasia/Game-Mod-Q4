@@ -3519,6 +3519,11 @@ TIME_THIS_SCOPE("idGameLocal::RunFrame - gameDebug.BeginFrame()");
 			}
 		}
 
+		if (player->noclip)
+		{
+			roundManager.Think();
+		}
+
 		// If modview is running then let it think
 		common->ModViewThink( );	
 
@@ -3666,11 +3671,6 @@ TIME_THIS_SCOPE("idGameLocal::RunFrame - gameDebug.BeginFrame()");
 			for( cent = clientSpawnedEntities.Next(); cent != NULL; cent = cent->spawnNode.Next() ) {
 				cent->Think();			
 			}	
-		}
-
-		if (player->noclip) 
-		{
-			roundManager.Think();
 		}
 
 		// service any pending events
@@ -7667,7 +7667,7 @@ idEntity* idGameLocal::HitScan(
 			{
 				idDict dict;
 				idVec3 origin;
-				float yaw = -177;
+				float yaw = 130;
 
 				const char* units[] = {
 					"monster_slimy_transfer",
@@ -7681,6 +7681,7 @@ idEntity* idGameLocal::HitScan(
 					"monster_convoy_ground",
 					"monster_stream_protector"
 				};
+
 
 				int monster_idx = 0;
 
@@ -7710,7 +7711,6 @@ idEntity* idGameLocal::HitScan(
 
 					if (newEnt)
 					{
-						Printf("Spawned Player Entity '%s'\n", newEnt->name.c_str());
 						roundManager.AddPlayerUnit(newEnt->entityNumber);
 					}
 				}

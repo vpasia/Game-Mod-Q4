@@ -3,7 +3,7 @@
 
 #include "RoundManager.h"
 
-//8820 -8343 128
+#define MIN_SPAWN_DISTANCE 50
 
 void RoundManager::Init() 
 {
@@ -19,13 +19,13 @@ void RoundManager::StartRound()
 	for (int i = 0; i < playerUnits.Num(); i++) 
 	{
 		idEntity* playerUnit = gameLocal.entities[playerUnits[i]];
-		playerUnit->fl.notarget = false;
+		if(playerUnit) playerUnit->fl.notarget = false;
 	}
 
 	for (int i = 0; i < enemyUnits.Num(); i++)
 	{
 		idEntity* enemyUnit = gameLocal.entities[enemyUnits[i]];
-		enemyUnit->fl.notarget = false;
+		if(enemyUnit) enemyUnit->fl.notarget = false;
 	}
 }
 
@@ -54,34 +54,48 @@ void RoundManager::SpawnEnemyUnits()
 					"monster_stream_protector"
 	};
 
-	idDict savedSpawnPositions;
+	idRandom2 rng(gameLocal.random.RandomInt());
+
+	idList<idVec3> savedSpawnPositions;
 
 	idDict dict;
 	idVec3 origin;
-	float yaw = 0;
+	float yaw = -58;
 
 	bool validPositionSelected = false;
 
 	for (int i = 0; i < round; i++) 
 	{
-		int monster_idx = gameLocal.random.RandomInt(round / 4);
+		int monster_idx = rng.RandomInt(round / 4);
 
 		dict.Set("classname", va("%s", units[monster_idx]));
 		dict.Set("angle", va("%f", yaw));
 
 		while (!validPositionSelected) 
 		{
-			float randomOffsetX = gameLocal.random.CRandomFloat();
-			float randomOffsetY = gameLocal.random.CRandomFloat();
+			float randomOffsetX = rng.CRandomFloat();
+			float randomOffsetY = rng.CRandomFloat();
 
-			float xRight = randomOffsetX > 0 ? 1 : -1;
-			float yRight = randomOffsetY > 0 ? 1 : -1;
+			int xRight = randomOffsetX > 0 ? 1 : -1;
+			int yRight = randomOffsetY > 0 ? 1 : -1;
 
-			idVec3 offset(xRight * (150 + (10 * round * randomOffsetX)), yRight * (150 + (10 * round * randomOffsetY)), 0);
+			float range = ((100 + (10 * round)) - MIN_SPAWN_DISTANCE) + 1;
+
+			idVec3 offset(xRight * ((abs(randomOffsetX) * range) + MIN_SPAWN_DISTANCE), yRight * ((abs(randomOffsetY) * range) + MIN_SPAWN_DISTANCE), 0);
 			origin = CENTER_SPAWN_POINT + offset;
 
-			gameLocal.Printf("Offset (%f, %f, %f)\n", offset.x, offset.y, offset.z);
-			savedSpawnPositions.GetBool(va("%f%f%f", origin.x, origin.y, origin.z), "1", validPositionSelected);
+			validPositionSelected = true;
+
+			for (int j = 0; j < savedSpawnPositions.Num(); j++) 
+			{
+				idVec3 position = savedSpawnPositions[j];
+
+				if (abs(origin.x - position.x) < MIN_SPAWN_DISTANCE && abs(origin.y - position.y) < MIN_SPAWN_DISTANCE) 
+				{
+					validPositionSelected = false;
+					break;
+				}
+			}
 		}
 
 		dict.Set("origin", origin.ToString());
@@ -99,7 +113,7 @@ void RoundManager::SpawnEnemyUnits()
 		{
 			gameLocal.Printf("Spawned Enemy Entity '%s' (%f, %f, %f)\n", newEnt->name.c_str(), origin.x, origin.y, origin.z);
 			enemyUnits.Append(newEnt->entityNumber);
-			savedSpawnPositions.SetBool(va("%f%f%f", origin.x, origin.y, origin.z), false);
+			savedSpawnPositions.Append(idVec3(origin.x, origin.y, origin.z));
 			validPositionSelected = false;
 		}
 	}
@@ -112,7 +126,8 @@ void RoundManager::RemoveEnemyUnit(int entityNum)
 
 void RoundManager::AddPlayerUnit(int entityNum) 
 {
-	playerUnits.Append(entityNum);
+	int index = playerUnits.Append(entityNum);
+	gameLocal.Printf("Appended entity num %d, at index %d\n", entityNum, index);
 }
 
 void RoundManager::RemovePlayerUnit(int entityNum) 
@@ -120,18 +135,23 @@ void RoundManager::RemovePlayerUnit(int entityNum)
 	playerUnits.Remove(entityNum);
 }
 
-void RoundManager::ClearPlayerUnits() 
+void RoundManager::ClearPlayerUnits()
 {
-	for (int i = 0; i < playerUnits.Num(); i++)
+	int playerUnitCount = playerUnits.Num();
+
+	for (int i = 0; i < playerUnitCount; i++)
 	{
+		gameLocal.Printf("Fetching entity num %d at index %d\n", playerUnits[i], i);
 		idEntity* playerUnit = gameLocal.entities[playerUnits[i]];
-		RemovePlayerUnit(playerUnits[i]);
 
 		if (playerUnit)
 		{
-			playerUnit->PostEventMS(&EV_Remove, 0);
+			gameLocal.Printf("Deleting player unit %s\n", playerUnit->name.c_str());
+			delete playerUnit;
 		}
 	}
+
+	playerUnits.Clear();
 }
 
 void RoundManager::Think() 
@@ -145,8 +165,6 @@ void RoundManager::Think()
 
 	if (roundEnded && !player->pfl.dead) 
 	{
-		
-
 		if (roundStarted)
 		{
 			roundStarted = false;

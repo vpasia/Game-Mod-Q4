@@ -2384,11 +2384,9 @@ windowDef Desktop
 
 		onTime 0 {
 			set "visible" "1";
-			transition "backcolor" "0,0,0,1" "0,0,0,0" "5000" ;
-			transition "round_text::forecolor" "1,1,1,1" "1,1,1,0" "5000" ;
 		}
 
-		onTime +6000 {
+		onTime +3000 {
 			set "visible" "0";
 		}
 
@@ -2411,10 +2409,10 @@ windowDef Desktop
 
 		onTime 0 {
 			set "visible" "1";
-			transition "outofbounds_text::forecolor" "1,0,0,1" "1,0,0,0" "600" ;
+			transition "outofbounds_text::forecolor" "1,0,0,1" "1,0,0,0" "800" ;
 		}
 
-		onTime +800 {
+		onTime +1000 {
 			set "visible" "0";
 		}
 
@@ -2438,10 +2436,10 @@ windowDef Desktop
 
 		onTime 0 {
 			set "visible" "1";
-			transition "placedownwarning_text::forecolor" "1,0,0,1" "1,0,0,0" "600" ;
+			transition "placedownwarning_text::forecolor" "1,0,0,1" "1,0,0,0" "800" ;
 		}
 
-		onTime +800 {
+		onTime +1000 {
 			set "visible" "0";
 		}
 
@@ -2465,10 +2463,10 @@ windowDef Desktop
 
 		onTime 0 {
 			set "visible" "1";
-			transition "battlestart_text::forecolor" "0,1,0.247,1" "0,1,0.247,0" "600" ;
+			transition "battlestart_text::forecolor" "0,1,0.247,1" "0,1,0.247,0" "800" ;
 		}
 
-		onTime +800 {
+		onTime +1000 {
 			set "visible" "0";
 		}
 
