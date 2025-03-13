@@ -342,6 +342,8 @@ public:
 	bool					sortTeamMasters;		// true if active lists needs to be reordered to place physics team masters before their slaves
 	idDict					persistentLevelInfo;	// contains args that are kept around between levels
 
+	PlayerUnitInventory		puinventory;
+
 // RAVEN BEGIN
 // bdube: client entities
 	rvClientEntity *			clientEntities[MAX_CENTITIES];	// index to client entities

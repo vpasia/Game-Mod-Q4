@@ -88,7 +88,7 @@ windowDef Desktop
 		} else {
 			set "deathhistory1_tourney::text" "$deathhistory2_tourney::text";
 			set "deathhistory1_fade_tourney::text" "$deathhistory2_tourney::text";
-
+			
 			if ( "desktop::deathCount" == 2 ) {
 				set "desktop::deathCount" "1";
 				set "deathhistory2_tourney::visible" "0";
@@ -105,7 +105,7 @@ windowDef Desktop
 			if ( "desktop::deathCount" >= 4 ) {
 				namedEvent "desktop::removedeathline";
 			}
-
+			
 			if ( "desktop::deathCount" == 3 ) {
 				set "deathhistory4::text" "$gui::deathinfo";
 				set "deathhistory4::visible" "1";
@@ -129,7 +129,7 @@ windowDef Desktop
 			if ( "desktop::deathCount" >= 2 ) {
 				namedEvent "desktop::removedeathline";
 			}
-
+			
 			if ( "desktop::deathCount" == 1 ) { 		
 				set "deathhistory2_tourney::text" "$gui::deathinfo";
 				set "deathhistory2_tourney::visible" "1";
@@ -167,7 +167,7 @@ windowDef Desktop
 				set "health_backbar_add_mp::visible" "0" ;
 			}	
 		}
-
+		
 		if ( "gui::player_healthdelta" < 0 )
 		{
 			resettime "health_amount" "0" ;
@@ -183,7 +183,7 @@ windowDef Desktop
 
 	onNamedEvent weaponChange {
 		namedEvent "clipCheck";
-
+		
 		//-----------------------
 		// per weapon ammo bar colors for mp		
 		//-----------------------
@@ -223,13 +223,13 @@ windowDef Desktop
 				set "ammo_val_mp::matcolor" "1,0.75,0.25,0.5" ;
 			}
 		}
-
+		
 		//-----------------------		
 		// If we had a valid weapon as out last weapon then show the weapon 
 		// switch icons.  This check prevents the indicators from coming up
 		// when you first start the game.
 		//-----------------------	
-
+		
 		set "p_weapswitch::visible" "0";
 		if ( "gui::player_lastweapon" >= 0 && "desktop::hidden" == 0)
 		{
@@ -270,7 +270,7 @@ windowDef Desktop
 
 	onNamedEvent radioChatterUp {
 		set "p_radio::visible" "1" ;
-
+		
 		transition "rhino::rect" "$rhino::rect" "$d_rhino::rect" "500" ;
 		transition "rhino_backbar::rect" "$rhino_backbar::rect" "$d_rhino_backbar::rect" "500" ;
 	}
@@ -372,24 +372,24 @@ windowDef Desktop
 	onNamedEvent setTeam_marine {	
 		set "health_valbar_mp::matcolor" "0.698,0.811,0.427,0.2" ;
 		set "health_val_mp::matcolor" "0.698,0.811,0.427,0.5" ;
-
+		
 		set "armor_valbar_mp::matcolor" "0.698,0.811,0.427,0.2" ;
 		set "armor_val_mp::matcolor" "0.698,0.811,0.427,0.5" ;
-
+		
 		set "powerup_flag_icon::matcolor" "1,0.482,0.0156,0.8";
-
+		
 		set "desktop::teamstrogg" "0" ;
 	}
 
 	onNamedEvent setTeam_strogg {	
 		set "health_valbar_mp::matcolor" "1,0.5,0,0.2" ;
 		set "health_val_mp::matcolor" "1,0.5,0,0.5" ;
-
+		
 		set "armor_valbar_mp::matcolor" "1,0.5,0,0.2" ;
 		set "armor_val_mp::matcolor" "1,0.5,0,0.5" ;
-
+		
 		set "powerup_flag_icon::matcolor" "0.415,0.643,0.168,0.8";
-
+		
 		set "desktop::teamstrogg" "1" ;
 	}
 
@@ -416,7 +416,7 @@ windowDef Desktop
 	onNamedEvent missileThreatUp {
 		set "missile_indicator::visible" "1";
 		resetTime "missile_indicator" "0";	
-
+		
 		set "missile_text::visible" "1";
 		resetTime "missile_text" "0";	
 	}
@@ -425,7 +425,7 @@ windowDef Desktop
 		set "missile_indicator::visible" "0";
 		stoptransitions "missile_indicator";	
 		set "missile_indicator::matcolor" "1,.1,.1,.7" ;
-
+		
 		set "missile_text::visible" "0";
 		stoptransitions "missile_text";	
 		set "missile_text::forecolor" "1,.1,.1,.7" ;
@@ -456,6 +456,7 @@ windowDef Desktop
 		textscale	0.25
 		textstyle	1
 		forecolor	1,1,1,0.6
+		visible	1
 	}
 	windowDef ViewComments
 	{
@@ -480,111 +481,6 @@ windowDef Desktop
 		matcolor	1 ,1 ,1 ,1
 		visible	0
 	}
-	windowDef p_flatbed
-	{
-		rect	0,0,640,480
-		visible	0
-		windowDef flatbed_backbar
-		{
-			rect	13,420,125,59
-			visible	1
-			background	"gfx/guis/hud/backbar"
-			matcolor	0,0,0,0.5
-			shear	0,-.22
-		}
-		windowDef p_flatbed_val
-		{
-			rect	133 - ( "gui::vehicle_health" * 115 ),430,115,40
-			visible	1
-			shear	0,-.22
-			windowDef flatbed_val
-			{
-				rect	-116 + ( "gui::vehicle_health" * 115 ),0,118,40
-				visible	1
-				background	"gfx/guis/hud/flatbedbar"
-				matcolor	0.701,0.815,0.431,0.35
-				shear	0,-.22
-			}
-		}
-		windowDef flatbed_valbar
-		{
-			rect	17,430,118,40
-			visible	1
-			background	"gfx/guis/hud/flatbededge"
-			matcolor	0.701,0.815,0.431,0.4
-			shear	0,-.22
-		}
-		windowDef tramheat_backbar
-		{
-			rect	143,429,220,48
-			visible	0
-			background	"gfx/guis/hud/veh_backbar2"
-			matcolor	0,0,0,0.5
-			shear	0,-.22
-		}
-		windowDef tramheat_mgun
-		{
-			rect	237,449,38,20
-			background	"gfx/guis/vehicles/veh_mgun"
-			visible	0
-			matcolor	0.701,0.815,0.431,0.6
-			shear	0,-.22
-			matscalex	-1
-		}
-		windowDef tramheat_valbar_bg
-		{
-			rect	147,430,110,43
-			visible	0
-			background	"gfx/guis/hud/veh_backbar2a"
-			matcolor	0.976,0.756,0.0156,0.298
-			shear	0,-.22
-		}
-		windowDef p_ammo_valbar
-		{
-			rect	151,430,"gui::tram_heatpct" * 86,43
-			visible	0
-			shear	0,-.22
-			windowDef tramheat_valbar
-			{
-				rect	-4,0,110,43
-				visible	1
-				background	"gfx/guis/hud/veh_backbar2a"
-				matcolor	0.980,0.760,0.0196,0.5
-				shear	0,-.22
-			}
-		}
-		windowDef tramheat_valbar_bg_oh
-		{
-			rect	147,430,110,43
-			visible	0
-			background	"gfx/guis/hud/veh_backbar2a"
-			matcolor	1,0.5,0,0.3*guitable_10_5[time*0.002]
-			shear	0,-.22
-		}
-		windowDef p_ammo_valbar_oh
-		{
-			rect	151,430,"gui::tram_heatpct" * 86,43
-			visible	0
-			shear	0,-.22
-			windowDef tramheat_valbar_oh
-			{
-				rect	-4,0,110,43
-				visible	1
-				background	"gfx/guis/hud/veh_backbar2a"
-				matcolor	1,0.5,0,0.5*guitable_10_5[time*0.002]
-				shear	0,-.22
-			}
-		}
-		windowDef t_tramheat
-		{
-			rect	152,433,81,10
-			visible	0
-			forecolor	1,1,1,0.4
-			text	"#str_200978"
-			textscale	0.12
-			font	"fonts/lowpixel"
-		}
-	}
 	windowDef p_ammo
 	{
 		rect	0,0,640,480
@@ -604,27 +500,6 @@ windowDef Desktop
 			background	"gfx/guis/hud/valbar"
 			matcolor	0.701,0.815,0.431,0.2
 			shear	0,-.22
-		}
-		windowDef p_ammo_val
-		{
-			rect	133 - ( "gui::player_ammopct" * 115 ),420,115,59
-			visible	1
-			shear	0,-.22
-			windowDef ammo_val
-			{
-				rect	-120 + ( "gui::player_ammopct" * 115 ),0,125,59
-				visible	1
-				background	"gfx/guis/hud/valbar"
-				matcolor	0.701,0.815,0.431,0.35
-				shear	0,-.22
-			}
-		}
-		windowDef current_gun
-		{
-			rect	11,435,106,26
-			visible	"desktop::showGunInfo" != 0
-			background	"gui::weapicon"
-			matcolor	0.780,0.741,0.470,0.4
 		}
 		windowDef ammo_amount
 		{
@@ -659,381 +534,6 @@ windowDef Desktop
 			shear	0,-.22
 			textalign	2
 		}
-		windowDef icon_ammoweapon
-		{
-			rect	113,458,16,16
-			visible	1
-			background	"gui::ammoicon"
-			matcolor	0.658,0.639,0.376,0.6
-		}
-	}
-	windowDef p_health
-	{
-		rect	0,0,640,480
-		visible	("gui::mp" == 0 )
-		windowDef health_backbar
-		{
-			rect	190,420,125,59
-			visible	1
-			background	"gfx/guis/hud/backbar"
-			matcolor	0,0,0,0.5
-			shear	0,-.22
-		}
-		windowDef health_valbar
-		{
-			rect	190,420,125,59
-			visible	1
-			background	"gfx/guis/hud/valbar"
-			matcolor	0.701,0.815,0.431,0.2
-			shear	0,-.22
-		}
-		windowDef health_ekg
-		{
-			rect	190,420,125,59
-			visible	1
-			background	"gfx/guis/hud/ekg"
-			matcolor	0.0862,0.105,0.0549,1
-			shear	0,-.22
-		}
-		windowDef p_health_val
-		{
-			rect	310 - ( "gui::player_healthpct" * 115 ),420,115,59
-			visible	1
-			shear	0,-.22
-			windowDef health_val
-			{
-				rect	-120 + ( "gui::player_healthpct" * 115 ),0,125,59
-				visible	1
-				background	"gfx/guis/hud/valbar"
-				matcolor	0.701,0.815,0.431,0.35
-				shear	0,-.22
-			}
-		}
-		windowDef d_health_amount
-		{
-			rect	254,427,58,31
-			visible	0
-		}
-		windowDef health_amount
-		{
-			rect	256,429,52,26
-			visible	1
-			forecolor	0.866,0.921,0.764,1
-			text	"gui::player_health"
-			textscale	0.5
-			font	"fonts/chain"
-			shear	0,-.22
-			textalign	2
-			notime	1
-
-			onTime 0 {
-				transition "forecolor" "$desktop::white" "$desktop::typecolor" "250" ;
-				transition "rect" "$d_health_amount::rect" "$health_amount::rect" "250" ;
-				transition "textscale" "0.6" "0.5" "250" ;
-
-				transition "icon_health::matcolor" "$desktop::white" "$desktop::healthicon" "250" ;
-			}
-
-		}
-		windowDef icon_health
-		{
-			rect	288,458,16,16
-			visible	1
-			background	"gfx/guis/hud/icons/item_health"
-			matcolor	0.658,0.639,0.376,0.6
-		}
-		windowDef health_backbar_add
-		{
-			rect	190,420,125,59
-			visible	0
-			background	"gfx/guis/hud/backbar_add"
-			matcolor	1*guitable_10_5[time*0.002],0,0,1
-			shear	0,-.22
-		}
-	}
-	windowDef p_armor
-	{
-		rect	0,0,640,480
-		visible	("gui::player_armor" > 0 && "gui::mp" == 0 )
-		windowDef armor_backbar
-		{
-			rect	326,420,125,59
-			visible	1
-			background	"gfx/guis/hud/backbar"
-			matcolor	0,0,0,0.5
-			shear	0,-.22
-		}
-		windowDef armor_valbar
-		{
-			rect	326,420,125,59
-			visible	1
-			background	"gfx/guis/hud/arbar"
-			matcolor	0.698,0.811,0.427,0.2
-			shear	0,-.22
-		}
-		windowDef p_armor_val
-		{
-			rect	446 - ( "gui::player_armorpct" * 115 ),420,115,59
-			visible	1
-			shear	0,-.22
-			windowDef armor_val
-			{
-				rect	-120 + ( "gui::player_armorpct" * 115 ),0,125,59
-				visible	1
-				background	"gfx/guis/hud/arbar"
-				matcolor	0.698,0.811,0.427,0.349
-				shear	0,-.22
-			}
-		}
-		windowDef d_armor_amount
-		{
-			rect	390,427,58,31
-			visible	0
-		}
-		windowDef armor_amount
-		{
-			rect	392,429,52,26
-			visible	1
-			forecolor	0.866,0.921,0.764,1
-			text	"gui::player_armor"
-			textscale	0.5
-			font	"fonts/chain"
-			shear	0,-.22
-			textalign	2
-			notime	1
-
-			onTime 0 {
-				transition "forecolor" "$desktop::white" "$desktop::typecolor" "250" ;
-				transition "rect" "$d_armor_amount::rect" "$armor_amount::rect" "250" ;
-				transition "textscale" "0.6" "0.5" "250" ;
-
-				transition "icon_armorvest::matcolor" "$desktop::white" "$desktop::armoricon" "250" ;
-			}
-
-		}
-		windowDef icon_armorvest
-		{
-			rect	424,458,16,16
-			visible	1
-			background	"gfx/guis/hud/icons/item_armor"
-			matcolor	0.658,0.639,0.376,0.6
-		}
-	}
-	windowDef p_ammo_mp
-	{
-		rect	0,0,640,480
-		visible	("gui::mp" == 1 )
-		windowDef ammo_backbar_mp
-		{
-			rect	13,420,125,59
-			visible	1
-			background	"gfx/guis/hud/backbar"
-			matcolor	0,0,0,0.5
-			shear	0,-.22
-		}
-		windowDef ammo_valbar_mp
-		{
-			rect	13,420,125,59
-			visible	1
-			background	"gfx/guis/hud/valbar"
-			matcolor	0.5,0.5,0.5,0.2
-			shear	0,-.22
-		}
-		windowDef p_ammo_val_mp
-		{
-			rect	133 - ( "gui::player_ammopct" * 115 ),420,115,59
-			visible	1
-			shear	0,-.22
-			windowDef ammo_val_mp
-			{
-				rect	-120 + ( "gui::player_ammopct" * 115 ),0,125,59
-				visible	1
-				background	"gfx/guis/hud/valbar"
-				matcolor	0.5,0.5,0.5,0.5
-				shear	0,-.22
-			}
-		}
-		windowDef ammo_amount_mp
-		{
-			rect	81,429,50,26
-			visible	1
-			forecolor	1,1,1,1
-			text	"gui::player_totalammo"
-			textscale	0.5
-			font	"fonts/chain"
-			shear	0,-.22
-			textalign	2
-			textstyle	1
-		}
-		windowDef icon_ammoweapon_mp
-		{
-			rect	113,458,16,16
-			visible	1
-			background	"gui::ammoicon"
-			matcolor	1,1,1,1
-		}
-	}
-	windowDef p_health_mp
-	{
-		rect	0,0,640,480
-		visible	("gui::mp" == 1 )
-		windowDef health_backbar_mp
-		{
-			rect	190,420,125,59
-			visible	1
-			background	"gfx/guis/hud/backbar"
-			matcolor	0,0,0,0.5
-			shear	0,-.22
-		}
-		windowDef health_valbar_mp
-		{
-			rect	190,420,125,59
-			visible	1
-			background	"gfx/guis/hud/valbar"
-			matcolor	0.701,0.815,0.431,0.2
-			shear	0,-.22
-		}
-		windowDef health_ekg_mp
-		{
-			rect	190,420,125,59
-			visible	1
-			background	"gfx/guis/hud/ekg"
-			matcolor	0.0862,0.105,0.0549,1
-			shear	0,-.22
-		}
-		windowDef p_health_val_mp
-		{
-			rect	310 - ( "gui::player_healthpct" * 115 ),420,115,59
-			visible	1
-			shear	0,-.22
-			windowDef health_val_mp
-			{
-				rect	-120 + ( "gui::player_healthpct" * 115 ),0,125,59
-				visible	1
-				background	"gfx/guis/hud/valbar"
-				matcolor	0.701,0.815,0.431,0.5
-				shear	0,-.22
-			}
-		}
-		windowDef d_health_amount_mp
-		{
-			rect	254,427,58,31
-			visible	0
-		}
-		windowDef health_amount_mp
-		{
-			rect	258,429,50,26
-			visible	1
-			forecolor	1,1,1,1
-			text	"gui::player_health"
-			textscale	0.5
-			shear	0,-.22
-			textalign	2
-			notime	1
-			textstyle	1
-
-			onTime 0 {
-				if ( "desktop::teamstrogg" == 0 )
-				{
-					transition "forecolor" "$desktop::white" "$desktop::typecolor" "250" ;
-				} else	{
-					transition "forecolor" "$desktop::white" "$desktop::typecolor_strogg" "250" ;
-				}
-				transition "rect" "$d_health_amount::rect" "$health_amount::rect" "250" ;
-				transition "textscale" "0.6" "0.5" "250" ;
-
-				transition "icon_health::matcolor" "$desktop::white" "$desktop::healthicon_mp" "250" ;
-			}
-
-		}
-		windowDef icon_health_mp
-		{
-			rect	288,458,16,16
-			visible	1
-			background	"gfx/guis/hud/icons/item_health"
-			matcolor	0.968,0.752,0.0156,0.8
-		}
-		windowDef health_backbar_add_mp
-		{
-			rect	190,420,125,59
-			visible	0
-			background	"gfx/guis/hud/backbar_add"
-			matcolor	1*guitable_10_5[time*0.002],0,0,1
-			shear	0,-.22
-		}
-	}
-	windowDef p_armor_mp
-	{
-		rect	0,0,640,480
-		visible	("gui::player_armor" > 0 && "gui::mp" == 1 )
-		windowDef armor_backbar_mp
-		{
-			rect	326,420,125,59
-			visible	1
-			background	"gfx/guis/hud/backbar"
-			matcolor	0,0,0,0.5
-			shear	0,-.22
-		}
-		windowDef armor_valbar_mp
-		{
-			rect	326,420,125,59
-			visible	1
-			background	"gfx/guis/hud/arbar"
-			matcolor	0.698,0.811,0.427,0.2
-			shear	0,-.22
-		}
-		windowDef p_armor_val_mp
-		{
-			rect	446 - ( "gui::player_armorpct" * 115 ),420,115,59
-			visible	1
-			shear	0,-.22
-			windowDef armor_val_mp
-			{
-				rect	-120 + ( "gui::player_armorpct" * 115 ),0,125,59
-				visible	1
-				background	"gfx/guis/hud/arbar"
-				matcolor	0.698,0.811,0.427,0.5
-				shear	0,-.22
-			}
-		}
-		windowDef d_armor_amount_mp
-		{
-			rect	388,426,60,34
-			visible	0
-		}
-		windowDef armor_amount_mp
-		{
-			rect	394,429,50,26
-			visible	1
-			forecolor	1,1,1,1
-			text	"gui::player_armor"
-			textscale	0.5
-			shear	0,-.22
-			textalign	2
-			notime	1
-			textstyle	1
-
-			onTime 0 {
-				if ( "desktop::teamstrogg" == 0 )
-				{
-					transition "forecolor" "$desktop::white" "$desktop::typecolor" "250" ;
-				} else	{
-					transition "forecolor" "$desktop::white" "$desktop::typecolor_strogg" "250" ;
-				}
-				transition "rect" "$d_armor_amount::rect" "$armor_amount::rect" "250" ;
-				transition "textscale" "0.6" "0.5" "250" ;
-
-				transition "icon_armorvest::matcolor" "$desktop::white" "$desktop::armoricon_mp" "250" ;
-			}
-
-		}
-		windowDef icon_armorvest_mp
-		{
-			rect	424,458,16,16
-			visible	1
-			background	"gfx/guis/hud/icons/item_armor"
-			matcolor	0.980,0.168,0.0196,0.8
-		}
 	}
 	windowDef p_weapswitch
 	{
@@ -1061,7 +561,7 @@ windowDef Desktop
 			} else {
 				set "ws_weapon0::visible" "0";
 			}
-
+			
 			if ( "gui::weapon1" ) {
 				set "ws_weapon1::visible" "1";
 				if ( "gui::weapon1_ammo" != 0 ) {
@@ -1081,7 +581,7 @@ windowDef Desktop
 			} else {
 				set "ws_weapon1::visible" "0";
 			}
-
+			
 			if ( "gui::weapon2" ) {
 				set "ws_weapon2::visible" "1";
 				if ( "gui::weapon2_ammo" != 0 ) {
@@ -1101,7 +601,7 @@ windowDef Desktop
 			} else {
 				set "ws_weapon2::visible" "0";
 			}
-
+			
 			if ( "gui::weapon3" ) {
 				set "ws_weapon3::visible" "1";
 				if ( "gui::weapon3_ammo" != 0 ) {
@@ -1121,7 +621,7 @@ windowDef Desktop
 			} else {
 				set "ws_weapon3::visible" "0";
 			}
-
+			
 			if ( "gui::weapon4" ) {
 				set "ws_weapon4::visible" "1";
 				if ( "gui::weapon4_ammo" != 0 ) {
@@ -1141,7 +641,7 @@ windowDef Desktop
 			} else {
 				set "ws_weapon4::visible" "0";
 			}
-
+			
 			if ( "gui::weapon5" ) {
 				set "ws_weapon5::visible" "1";
 				if ( "gui::weapon5_ammo" != 0 ) {
@@ -1161,7 +661,7 @@ windowDef Desktop
 			} else {
 				set "ws_weapon5::visible" "0";
 			}
-
+			
 			if ( "gui::weapon6" ) {
 				set "ws_weapon6::visible" "1";
 				if ( "gui::weapon6_ammo" != 0 ) {
@@ -1181,7 +681,7 @@ windowDef Desktop
 			} else {
 				set "ws_weapon6::visible" "0";
 			}
-
+			
 			if ( "gui::weapon7" ) {
 				set "ws_weapon7::visible" "1";
 				if ( "gui::weapon7_ammo" != 0 ) {
@@ -1201,7 +701,7 @@ windowDef Desktop
 			} else {
 				set "ws_weapon7::visible" "0";
 			}
-
+			
 			if ( "gui::weapon8" ) {
 				set "ws_weapon8::visible" "1";
 				if ( "gui::weapon8_ammo" != 0 ) {
@@ -1221,7 +721,7 @@ windowDef Desktop
 			} else {
 				set "ws_weapon8::visible" "0";
 			}					
-
+			
 			if ( "gui::weapon9" ) {
 				set "ws_weapon9::visible" "1";
 				if ( "gui::weapon9_ammo" != 0 ) {
@@ -1241,7 +741,7 @@ windowDef Desktop
 			} else {
 				set "ws_weapon9::visible" "0";
 			}					
-
+			
 			if ( "gui::weapon10" ) {
 				set "ws_weapon10::visible" "1";
 				if ( "gui::weapon10_ammo" != 0 ) {
@@ -1608,115 +1108,6 @@ windowDef Desktop
 				matcolor	1,1,1,1
 				visible	0
 			}
-		}
-	}
-	windowDef p_radio
-	{
-		rect	0,0,640,480
-		visible	1
-		windowDef radio_backbar
-		{
-			rect	520,5,113,28
-			visible	1
-			background	"gfx/guis/hud_rev3/radiobar"
-			matcolor	0,0,0,0.498
-			shear	0,-.22
-		}
-		windowDef t_radio1
-		{
-			rect	545,6,81,12
-			visible	1
-			forecolor	1,1,1,1
-			text	"#str_200272"
-			textscale	0.2
-			font	"fonts/marine"
-			textspacing	0
-		}
-		windowDef t_radio2
-		{
-			rect	545,13,81,12
-			visible	1
-			forecolor	1,1,1,1
-			text	"#str_200273"
-			textscale	0.2
-			font	"fonts/marine"
-			textspacing	0
-		}
-		windowDef waveform
-		{
-			rect	513,7,41,25
-			visible	1
-			background	"gfx/guis/hud/waveform"
-			matcolor	1,0.5,0,1
-		}
-		windowDef rhino_backbar
-		{
-			rect	468,5,46,47
-			background	"gfx/guis/hud/wsbar"
-			matcolor	0,0,0,0.4
-			shear	0,-.22
-			visible	"gui::rhinochatter"
-		}
-		windowDef rhino
-		{
-			rect	471,9,42,39
-			background	"gfx/guis/hud/radio_rhino"
-			visible	"gui::rhinochatter"
-			matcolor	1,1,0,1
-			notime	1
-			shear	0,-.22
-		}
-		windowDef d_rhino_backbar
-		{
-			rect	493,6,26,26
-			background	"gfx/guis/hud/wsbar"
-			matcolor	0,0,0,0.4
-			shear	0,-.22
-			visible	0
-		}
-		windowDef d_rhino
-		{
-			rect	495,8,22,22
-			background	"gfx/guis/hud/radio_rhino"
-			visible	0
-			matcolor	1,1,1,1
-			shear	0,-.22
-		}
-	}
-	windowDef p_itempickup
-	{
-		rect	0,0,640,480
-		visible	0
-		notime	1
-
-		onTime 3000 {
-			set "visible" "0";
-		}
-
-		windowDef pickup_backbar
-		{
-			rect	21,401,230,24
-			visible	1
-			background	"gfx/guis/hud/pickupbar"
-			matcolor	0,0,0,0.5
-			shear	0,-.22
-		}
-		windowDef t_pickupname
-		{
-			rect	42,404,236,15
-			visible	1
-			forecolor	0.862,0.917,0.760,1
-			text	"gui::itemtext"
-			textscale	0.2
-			font	"fonts/marine"
-			textspacing	0
-		}
-		windowDef icon_pickup
-		{
-			rect	26,405,16,16
-			visible	1
-			background	"gui::itemicon"
-			matcolor	0.666,0.674,0.435,0.8
 		}
 	}
 	windowDef powerups

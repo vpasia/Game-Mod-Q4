@@ -300,11 +300,11 @@ class PlayerUnitInventory
 	public:
 		unsigned int availableUnits;
 
-		const char* GetSpawnUnit();
+		const char* GetSpawnUnit(int index);
 
 		unsigned int GetCash() { return cash; }
-		void GiveCash(unsigned int dcash);
-		void SetCash(unsigned int cash);
+		void GiveCash(unsigned int dcash) { cash += dcash;  }
+		void SetCash(unsigned int dcash) { cash = dcash; }
 		bool AttemptToBuyUnit(int index);
 
 
@@ -379,8 +379,6 @@ public:
 		
 	// inventory
 	idInventory				inventory;
-
-	PlayerUnitInventory		puinventory;
 
 	rvWeapon*						weapon;
 	idEntityPtr<rvViewWeapon>		weaponViewModel;

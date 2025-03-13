@@ -1072,6 +1072,39 @@ bool idInventory::UseAmmo( int index, int amount ) {
 }
 
 /*
+===============
+PlayerUnitInventory::AttemptToBuyUnit
+===============
+*/
+bool PlayerUnitInventory::AttemptToBuyUnit(int index) 
+{
+	unsigned int cost = UNIT_COSTS[index - 4];
+
+	if (cash < cost) 
+	{
+		return false;
+	}
+
+	cash -= cost;
+	availableUnits |= 1 << (index + 1);
+	return true;
+}
+
+/*
+===============
+PlayerUnitInventory::GetSpawnUnit
+===============
+*/
+const char* PlayerUnitInventory::GetSpawnUnit(int index) 
+{
+	if ((availableUnits >> (10 - index)) & 1) 
+	{
+		return SPAWNABLE_UNITS[index];
+	}
+	return NULL;
+}
+
+/*
 ==============
 idPlayer::idPlayer
 ==============
@@ -3735,7 +3768,7 @@ void idPlayer::DrawHUD( idUserInterface *_hud ) {
 			}
 		}	
 
-		UpdateHudStats( _hud );
+		//UpdateHudStats( _hud );
 
 		if ( focusBrackets ) {
 			// If 2d_calc is still true then the gui didnt render so we can abandon it
@@ -6121,12 +6154,12 @@ void idPlayer::Weapon_Combat( void ) {
 	}
 
 	// update our ammo clip in our inventory
-	if ( gameLocal.GetLocalPlayer() == this && ( currentWeapon >= 0 ) && ( currentWeapon < MAX_WEAPONS ) ) {
+	/*if ( gameLocal.GetLocalPlayer() == this && ( currentWeapon >= 0 ) && ( currentWeapon < MAX_WEAPONS ) ) {
 		inventory.clip[ currentWeapon ] = weapon->AmmoInClip();
  		if ( hud && ( currentWeapon == idealWeapon ) ) {
  			UpdateHudAmmo( hud );
 		}
-	}
+	}*/
 }
 
 /*

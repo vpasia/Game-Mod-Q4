@@ -7,6 +7,7 @@ class RoundManager
 {
 	public:
 		int round;
+		int roundEcon;
 		bool roundStarted;
 		bool roundEnded;
 
@@ -24,6 +25,9 @@ class RoundManager
 		
 		void StartRound();
 		bool CheckEndRound();
+
+		bool SpendEcon(int index);
+		void UpdateRoundEcon();
 
 		void Think();
 };

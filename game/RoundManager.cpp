@@ -171,7 +171,7 @@ void RoundManager::Think()
 
 			if (playerUnits.Num() == 0)
 			{
-				round = 1;
+				Init();
 				player->Kill(false, false);
 
 				return;
