@@ -1072,39 +1072,6 @@ bool idInventory::UseAmmo( int index, int amount ) {
 }
 
 /*
-===============
-PlayerUnitInventory::AttemptToBuyUnit
-===============
-*/
-bool PlayerUnitInventory::AttemptToBuyUnit(int index) 
-{
-	unsigned int cost = UNIT_COSTS[index - 4];
-
-	if (cash < cost) 
-	{
-		return false;
-	}
-
-	cash -= cost;
-	availableUnits |= 1 << (index + 1);
-	return true;
-}
-
-/*
-===============
-PlayerUnitInventory::GetSpawnUnit
-===============
-*/
-const char* PlayerUnitInventory::GetSpawnUnit(int index) 
-{
-	if ((availableUnits >> (10 - index)) & 1) 
-	{
-		return SPAWNABLE_UNITS[index];
-	}
-	return NULL;
-}
-
-/*
 ==============
 idPlayer::idPlayer
 ==============
@@ -3382,37 +3349,39 @@ idPlayer::UpdateHudAmmo
 ===============
 */
 void idPlayer::UpdateHudAmmo( idUserInterface *_hud ) {
-	int inclip;
-	int ammoamount;
+	//int inclip;
+	//int ammoamount;
 
-	assert( weapon );
+	//assert( weapon );
 	assert( _hud );
 
-	inclip		= weapon->AmmoInClip();
-	ammoamount	= weapon->AmmoAvailable();
+	//inclip		= weapon->AmmoInClip();
+	//ammoamount	= weapon->AmmoAvailable();
 
-	if ( ammoamount < 0 ) {
-		// show infinite ammo
-		_hud->SetStateString( "player_ammo", "-1" );
-		_hud->SetStateString( "player_totalammo", "-1" );
-		_hud->SetStateFloat ( "player_ammopct", 1.0f );
-	} else if ( weapon->ClipSize ( ) && !gameLocal.isMultiplayer ) {
-		_hud->SetStateInt ( "player_clip_size", weapon->ClipSize() );
-		_hud->SetStateFloat ( "player_ammopct", (float)inclip / (float)weapon->ClipSize ( ) );
-		if ( weapon->ClipSize ( )==1) {
-			_hud->SetStateInt ( "player_totalammo", ammoamount );
-		}
-		else {
-			_hud->SetStateInt ( "player_totalammo", ammoamount - inclip );
-		}
-		_hud->SetStateInt ( "player_ammo", inclip );
-	} else {
-		_hud->SetStateFloat ( "player_ammopct", (float)ammoamount / (float)weapon->maxAmmo );
-		_hud->SetStateInt ( "player_totalammo", ammoamount );
-		_hud->SetStateInt ( "player_ammo", -1 );
-	} 
+	//if ( ammoamount < 0 ) {
+	//	// show infinite ammo
+	//	_hud->SetStateString( "player_ammo", "-1" );
+	//	_hud->SetStateString( "player_totalammo", "-1" );
+	//	_hud->SetStateFloat ( "player_ammopct", 1.0f );
+	//} else if ( weapon->ClipSize ( ) && !gameLocal.isMultiplayer ) {
+	//	_hud->SetStateInt ( "player_clip_size", weapon->ClipSize() );
+	//	_hud->SetStateFloat ( "player_ammopct", (float)inclip / (float)weapon->ClipSize ( ) );
+	//	if ( weapon->ClipSize ( )==1) {
+	//		_hud->SetStateInt ( "player_totalammo", ammoamount );
+	//	}
+	//	else {
+	//		_hud->SetStateInt ( "player_totalammo", ammoamount - inclip );
+	//	}
+	//	_hud->SetStateInt ( "player_ammo", inclip );
+	//} else {
+	//	_hud->SetStateFloat ( "player_ammopct", (float)ammoamount / (float)weapon->maxAmmo );
+	//	_hud->SetStateInt ( "player_totalammo", ammoamount );
+	//	_hud->SetStateInt ( "player_ammo", -1 );
+	//} 
 
-	_hud->SetStateBool( "player_ammo_empty", ( ammoamount == 0 ) );
+	//_hud->SetStateBool( "player_ammo_empty", ( ammoamount == 0 ) );
+
+	_hud->SetStateInt("player_ammo", gameLocal.roundManager.roundEcon);
 }
 
 /*
@@ -3425,45 +3394,59 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	
 	assert ( _hud );
 
-	temp = _hud->State().GetInt ( "player_health", "-1" );
-	if ( temp != health ) {		
-		_hud->SetStateInt   ( "player_healthDelta", temp == -1 ? 0 : (temp - health) );
-		_hud->SetStateInt	( "player_health", health < -100 ? -100 : health );
-		_hud->SetStateFloat	( "player_healthpct", idMath::ClampFloat ( 0.0f, 1.0f, (float)health / (float)inventory.maxHealth ) );
-		_hud->HandleNamedEvent ( "updateHealth" );
-	}
-		
-	temp = _hud->State().GetInt ( "player_armor", "-1" );
-	if ( temp != inventory.armor ) {
-		_hud->SetStateInt ( "player_armorDelta", temp == -1 ? 0 : (temp - inventory.armor) );
-		_hud->SetStateInt ( "player_armor", inventory.armor );
-		_hud->SetStateFloat	( "player_armorpct", idMath::ClampFloat ( 0.0f, 1.0f, (float)inventory.armor / (float)inventory.maxarmor ) );
-		_hud->HandleNamedEvent ( "updateArmor" );
-	}
-	
-	// Boss bar
-	if ( _hud->State().GetInt ( "boss_health", "-1" ) != (bossEnemy ? bossEnemy->health : -1) ) {
-		if ( !bossEnemy || bossEnemy->health <= 0 ) {
-			bossEnemy = NULL;
-			_hud->SetStateInt ( "boss_health", -1 );
-			_hud->HandleNamedEvent ( "hideBossBar" );			
- 			_hud->HandleNamedEvent ( "hideBossShieldBar" ); // grrr, for boss buddy..but maybe other bosses will have shields?
-		} else {			
-			_hud->SetStateInt ( "boss_health", bossEnemy->health );
-			_hud->HandleNamedEvent ( "updateBossBar" );
-		}
-	}
-		
-	// god mode information
-	_hud->SetStateString( "player_god", va( "%i", (godmode && g_showGodDamage.GetBool()) ) );
-	_hud->SetStateString( "player_god_damage", va( "%i", godmodeDamage ) );
+	//temp = _hud->State().GetInt ( "player_health", "-1" );
+	//if ( temp != health ) {		
+	//	_hud->SetStateInt   ( "player_healthDelta", temp == -1 ? 0 : (temp - health) );
+	//	_hud->SetStateInt	( "player_health", health < -100 ? -100 : health );
+	//	_hud->SetStateFloat	( "player_healthpct", idMath::ClampFloat ( 0.0f, 1.0f, (float)health / (float)inventory.maxHealth ) );
+	//	_hud->HandleNamedEvent ( "updateHealth" );
+	//}
+	//	
+	//temp = _hud->State().GetInt ( "player_armor", "-1" );
+	//if ( temp != inventory.armor ) {
+	//	_hud->SetStateInt ( "player_armorDelta", temp == -1 ? 0 : (temp - inventory.armor) );
+	//	_hud->SetStateInt ( "player_armor", inventory.armor );
+	//	_hud->SetStateFloat	( "player_armorpct", idMath::ClampFloat ( 0.0f, 1.0f, (float)inventory.armor / (float)inventory.maxarmor ) );
+	//	_hud->HandleNamedEvent ( "updateArmor" );
+	//}
+	//
+	//// Boss bar
+	//if ( _hud->State().GetInt ( "boss_health", "-1" ) != (bossEnemy ? bossEnemy->health : -1) ) {
+	//	if ( !bossEnemy || bossEnemy->health <= 0 ) {
+	//		bossEnemy = NULL;
+	//		_hud->SetStateInt ( "boss_health", -1 );
+	//		_hud->HandleNamedEvent ( "hideBossBar" );			
+ //			_hud->HandleNamedEvent ( "hideBossShieldBar" ); // grrr, for boss buddy..but maybe other bosses will have shields?
+	//	} else {			
+	//		_hud->SetStateInt ( "boss_health", bossEnemy->health );
+	//		_hud->HandleNamedEvent ( "updateBossBar" );
+	//	}
+	//}
+	//	
+	//// god mode information
+	//_hud->SetStateString( "player_god", va( "%i", (godmode && g_showGodDamage.GetBool()) ) );
+	//_hud->SetStateString( "player_god_damage", va( "%i", godmodeDamage ) );
 
-	// Update the hit direction
-	idVec3 localDir;
-	viewAxis.ProjectVector( lastDamageDir, localDir );
-	_hud->SetStateFloat( "hitdir", localDir.ToAngles()[YAW] + 180.0f );
+	//// Update the hit direction
+	//idVec3 localDir;
+	//viewAxis.ProjectVector( lastDamageDir, localDir );
+	//_hud->SetStateFloat( "hitdir", localDir.ToAngles()[YAW] + 180.0f );
+
+
 
 	//_hud->HandleNamedEvent( "updateArmorHealthAir" );
+
+	for (int i = 1; i <= 10; i++) 
+	{
+		if (i >= 5) 
+		{
+			if ((gameLocal.puinventory.availableUnits >> (10 - (i - 1) - 1)) & 1) 
+			{
+				_hud->SetStateBool(va("purchased_slot_%d", i), true);
+			}
+		}
+		_hud->HandleNamedEvent(va("updateSlot%d", i));
+	}
 
 	if ( weapon ) {
 		UpdateHudAmmo( _hud );
@@ -3768,7 +3751,7 @@ void idPlayer::DrawHUD( idUserInterface *_hud ) {
 			}
 		}	
 
-		//UpdateHudStats( _hud );
+		UpdateHudStats( _hud );
 
 		if ( focusBrackets ) {
 			// If 2d_calc is still true then the gui didnt render so we can abandon it
@@ -8514,17 +8497,19 @@ void idPlayer::PerformImpulse( int impulse ) {
 			break;
 		}
 		case IMPULSE_14: {
-			NextWeapon();
+			hud->HandleNamedEvent("toggleMonsterSelection");
+			/*NextWeapon();
 			if( gameLocal.isServer && spectating && gameLocal.gameType == GAME_TOURNEY ) {	
 				((rvTourneyGameState*)gameLocal.mpGame.GetGameState())->SpectateCycleNext( this );
-			}
+			}*/
 			break;
 		}
 		case IMPULSE_15: {
-			PrevWeapon();
+			hud->HandleNamedEvent("toggleMonsterSelection");
+			/*PrevWeapon();
 			if( gameLocal.isServer && spectating && gameLocal.gameType == GAME_TOURNEY ) {	
 				((rvTourneyGameState*)gameLocal.mpGame.GetGameState())->SpectateCyclePrev( this );
-			}
+			}*/
 			break;
 		}
 		case IMPULSE_17: {
@@ -8541,6 +8526,7 @@ void idPlayer::PerformImpulse( int impulse ) {
 			if (gameLocal.roundManager.playerUnits.Num() > 0)
 			{
 				gameLocal.roundManager.ClearPlayerUnits();
+				gameLocal.roundManager.SetRoundEcon();
 			}
 			break;
 		}
@@ -8738,6 +8724,8 @@ void idPlayer::EvaluateControls( void ) {
 	}
 
 	if ( ( usercmd.flags & UCF_IMPULSE_SEQUENCE ) != ( oldFlags & UCF_IMPULSE_SEQUENCE ) )  {
+		const char* spawnUnit = gameLocal.puinventory.GetSpawnUnit(usercmd.impulse);
+		hud->SetStateInt("selected", spawnUnit ? usercmd.impulse : -1);
 		PerformImpulse( usercmd.impulse );
 	}
 

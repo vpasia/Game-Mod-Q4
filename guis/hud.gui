@@ -30,11 +30,13 @@ windowDef Desktop
 		namedEvent "updateHealth";
 		namedEvent "updateArmor";
 		namedEvent "updateAmmo";		
-		namedEvent "clipCheck";
+		//namedEvent "clipCheck";
 		namedEvent "updatePowerups";
 		namedEvent "hideBrackets";
 		namedEvent "weaponChange";
 		namedEvent "radioChatterDown";
+		
+		set "gui::selected" "-1"
 	}
 
 	onNamedEvent hideHud {
@@ -182,7 +184,7 @@ windowDef Desktop
 	}
 
 	onNamedEvent weaponChange {
-		namedEvent "clipCheck";
+		//namedEvent "clipCheck";
 		
 		//-----------------------
 		// per weapon ammo bar colors for mp		
@@ -244,24 +246,24 @@ windowDef Desktop
 		set "p_weapswitch::visible" "0";
 	}
 
-	onNamedEvent clipCheck {
-		if ( "gui::player_totalammo" == -1 ) {
-			set "ammo_amount::visible" "0";	
-			set "ammo_amount_mp::visible" "0";
-			set "total_ammo::visible" "0";		
-			set "ammo_amount_nc::visible" "0";
-		} else if ( "gui::player_ammo" == -1 || "gui::player_clip_size" < 2 ) {
-			set "ammo_amount::visible" "0";	
-			set "ammo_amount_mp::visible" "1";
-			set "total_ammo::visible" "0";	
-			set "ammo_amount_nc::visible" "1";
-		} else {
-			set "ammo_amount_mp::visible" "1";
-			set "ammo_amount::visible" "1";	
-			set "total_ammo::visible" "1";	
-			set "ammo_amount_nc::visible" "0";
-		}
-	}
+	//onNamedEvent clipCheck {
+	//	if ( "gui::player_totalammo" == -1 ) {
+	//		set "ammo_amount::visible" "0";	
+	//		set "ammo_amount_mp::visible" "0";
+	//		set "total_ammo::visible" "0";		
+	//		set "ammo_amount_nc::visible" "0";
+	//	} else if ( "gui::player_ammo" == -1 || "gui::player_clip_size" < 2 ) {
+	//		set "ammo_amount::visible" "0";	
+	//		set "ammo_amount_mp::visible" "1";
+	//		set "total_ammo::visible" "0";	
+	//		set "ammo_amount_nc::visible" "1";
+	//	} else {
+	//		set "ammo_amount_mp::visible" "1";
+	//		set "ammo_amount::visible" "1";	
+	//		set "total_ammo::visible" "1";	
+	//		set "ammo_amount_nc::visible" "0";
+	//	}
+	//}
 
 	onNamedEvent itemPickup {
 		set "p_itempickup::visible" "1" ;
@@ -334,6 +336,27 @@ windowDef Desktop
 
 	onNamedEvent battleStart {
 		resettime "battlestart" "0"
+	}
+
+	onNamedEvent notYetUnlocked {
+		resettime "notyetunlocked" "0"
+	}
+
+	onNamedEvent notEnoughEcon {
+		resettime "notenoughecon" "0"
+	}
+
+	onNamedEvent toggleMonsterSelection {
+		if( "monsterselection1::visible" == 1 )
+		{
+			set "monsterselection1::visible" "0";
+			set "monsterselection2::visible" "1";
+		}
+		else
+		{
+			set "monsterselection1::visible" "1";
+			set "monsterselection2::visible" "0";
+		}
 	}
 
 	onNamedEvent showBossShieldBar {
@@ -447,6 +470,170 @@ windowDef Desktop
 		set "ViewComments::visible" "0";
 	}
 
+	onNamedEvent updateSlot1 {
+		if("gui::selected" == 0)
+		{
+			set "monster_slot_1::backcolor" "1,1,0.498,1";
+		}
+		else
+		{
+			set "monster_slot_1::backcolor" "1,1,1,1";
+		}
+	}
+
+	onNamedEvent updateSlot2 {
+		if("gui::selected" == 1)
+		{
+			set "monster_slot_2::backcolor" "1,1,0.498,1";
+		}
+		else
+		{
+			set "monster_slot_2::backcolor" "1,1,1,1";
+		}
+	}
+
+	onNamedEvent updateSlot3 {
+		if("gui::selected" == 2)
+		{
+			set "monster_slot_3::backcolor" "1,1,0.498,1";
+		}
+		else
+		{
+			set "monster_slot_3::backcolor" "1,1,1,1";
+		}
+	}
+
+	onNamedEvent updateSlot4 {
+		if("gui::selected" == 3)
+		{
+			set "monster_slot_4::backcolor" "1,1,0.498,1";
+		}
+		else
+		{
+			set "monster_slot_4::backcolor" "1,1,1,1";
+		}
+	}
+
+	onNamedEvent updateSlot5 {
+		if("gui::purchased_slot_5" == 1)
+		{
+			set "monster_slot_5::matcolor" "1,1,1,1";
+			
+			if("gui::selected" == 4)
+			{
+				set "monster_slot_5::backcolor" "1,1,0.498,1";
+			}
+			else
+			{
+				set "monster_slot_5::backcolor" "1,1,1,1";
+			}
+		}
+		else
+		{
+			set "monster_slot_5::matcolor" "0,0,0,0.251";
+		}
+	}
+
+	onNamedEvent updateSlot6 {
+		if("gui::purchased_slot_6" == 1)
+		{
+			set "monster_slot_6::matcolor" "1,1,1,1";
+			
+			if("gui::selected" == 5)
+			{
+				set "monster_slot_6::backcolor" "1,1,0.498,1";
+			}
+			else
+			{
+				set "monster_slot_6::backcolor" "1,1,1,1";
+			}
+		}
+		else
+		{
+			set "monster_slot_6::matcolor" "0,0,0,0.251";
+		}
+	}
+
+	onNamedEvent updateSlot7 {
+		if("gui::purchased_slot_7" == 1)
+		{
+			set "monster_slot_7::matcolor" "1,1,1,1";
+			
+			if("gui::selected" == 6)
+			{
+				set "monster_slot_7::backcolor" "1,1,0.498,1";
+			}
+			else
+			{
+				set "monster_slot_7::backcolor" "1,1,1,1";
+			}
+		}
+		else
+		{
+			set "monster_slot_7::matcolor" "0,0,0,0.251";
+		}
+	}
+
+	onNamedEvent updateSlot8 {
+		if("gui::purchased_slot_8" == 1)
+		{
+			set "monster_slot_8::matcolor" "1,1,1,1";
+			
+			if("gui::selected" == 7)
+			{
+				set "monster_slot_8::backcolor" "1,1,0.498,1";
+			}
+			else
+			{
+				set "monster_slot_8::backcolor" "1,1,1,1";
+			}
+		}
+		else
+		{
+			set "monster_slot_8::matcolor" "0,0,0,0.251";
+		}
+	}
+
+	onNamedEvent updateSlot9 {
+		if("gui::purchased_slot_9" == 1)
+		{
+			set "monster_slot_9::matcolor" "1,1,1,1";
+			
+			if("gui::selected" == 8)
+			{
+				set "monster_slot_9::backcolor" "1,1,0.498,1";
+			}
+			else
+			{
+				set "monster_slot_9::backcolor" "1,1,1,1";
+			}
+		}
+		else
+		{
+			set "monster_slot_9::matcolor" "0,0,0,0.251";
+		}
+	}
+
+	onNamedEvent updateSlot10 {
+		if("gui::purchased_slot_10" == 1)
+		{
+			set "monster_slot_10::matcolor" "1,1,1,1";
+			
+			if("gui::selected" == 9)
+			{
+				set "monster_slot_10::backcolor" "1,1,0.498,1";
+			}
+			else
+			{
+				set "monster_slot_10::backcolor" "1,1,1,1";
+			}
+		}
+		else
+		{
+			set "monster_slot_10::matcolor" "0,0,0,0.251";
+		}
+	}
+
 	windowDef speed
 	{
 		rect	550,70,80,20
@@ -487,7 +674,7 @@ windowDef Desktop
 		visible	("gui::mp" == 0 )
 		windowDef ammo_backbar
 		{
-			rect	13,420,125,59
+			rect	256,6,376,61
 			visible	1
 			background	"gfx/guis/hud/backbar"
 			matcolor	0,0,0,0.5
@@ -495,7 +682,7 @@ windowDef Desktop
 		}
 		windowDef ammo_valbar
 		{
-			rect	13,420,125,59
+			rect	261,4,341,64
 			visible	1
 			background	"gfx/guis/hud/valbar"
 			matcolor	0.701,0.815,0.431,0.2
@@ -503,814 +690,14 @@ windowDef Desktop
 		}
 		windowDef ammo_amount
 		{
-			rect	44,429,49,26
+			rect	297,19,214,28
 			visible	1
-			forecolor	0.866,0.921,0.764,1
+			forecolor	0.858,0.913,0.756,1
 			text	"gui::player_ammo"
 			textscale	0.5
 			font	"fonts/chain"
 			shear	0,-.22
-			textalign	2
-		}
-		windowDef total_ammo
-		{
-			rect	91,432,40,18
-			visible	1
-			forecolor	0.866,0.921,0.764,1
-			text	"gui::player_totalammo"
-			textscale	0.32
-			font	"fonts/chain"
-			shear	0,-.22
-			textalign	2
-		}
-		windowDef ammo_amount_nc
-		{
-			rect	82,429,49,26
-			visible	0
-			forecolor	0.866,0.921,0.764,1
-			text	"gui::player_totalammo"
-			textscale	0.5
-			font	"fonts/chain"
-			shear	0,-.22
-			textalign	2
-		}
-	}
-	windowDef p_weapswitch
-	{
-		rect	0,350,640,80
-		visible	0
-		notime	1
-
-		onNamedEvent UpdateWeapons {
-			if ( "gui::weapon0" ) {
-				set "ws_weapon0::visible" "1";
-				if ( "gui::weapon0_ammo" != 0 ) {
-					set "ws_weapon0_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 0 ) {
-						set "ws_weapon0_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon0_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon0_icon::matcolor" "$desktop::ws_on";	
-						set "ws_weapon0_glow::matcolor" "$desktop::ws_glowon";			
-					}
-				} else {
-					set "ws_weapon0_noammo::visible" "1";
-					set "ws_weapon0_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon0_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon0::visible" "0";
-			}
-			
-			if ( "gui::weapon1" ) {
-				set "ws_weapon1::visible" "1";
-				if ( "gui::weapon1_ammo" != 0 ) {
-					set "ws_weapon1_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 1 ) {
-						set "ws_weapon1_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon1_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon1_icon::matcolor" "$desktop::ws_on";	
-						set "ws_weapon1_glow::matcolor" "$desktop::ws_glowon";					
-					}
-				} else {
-					set "ws_weapon1_noammo::visible" "1";
-					set "ws_weapon1_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon1_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon1::visible" "0";
-			}
-			
-			if ( "gui::weapon2" ) {
-				set "ws_weapon2::visible" "1";
-				if ( "gui::weapon2_ammo" != 0 ) {
-					set "ws_weapon2_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 2 ) {
-						set "ws_weapon2_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon2_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon2_icon::matcolor" "$desktop::ws_on";	
-						set "ws_weapon2_glow::matcolor" "$desktop::ws_glowon";					
-					}
-				} else {
-					set "ws_weapon2_noammo::visible" "1";
-					set "ws_weapon2_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon2_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon2::visible" "0";
-			}
-			
-			if ( "gui::weapon3" ) {
-				set "ws_weapon3::visible" "1";
-				if ( "gui::weapon3_ammo" != 0 ) {
-					set "ws_weapon3_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 3 ) {
-						set "ws_weapon3_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon3_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon3_icon::matcolor" "$desktop::ws_on";	
-						set "ws_weapon3_glow::matcolor" "$desktop::ws_glowon";					
-					}
-				} else {
-					set "ws_weapon3_noammo::visible" "1";
-					set "ws_weapon3_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon3_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon3::visible" "0";
-			}
-			
-			if ( "gui::weapon4" ) {
-				set "ws_weapon4::visible" "1";
-				if ( "gui::weapon4_ammo" != 0 ) {
-					set "ws_weapon4_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 4 ) {
-						set "ws_weapon4_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon4_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon4_icon::matcolor" "$desktop::ws_on";	
-						set "ws_weapon4_glow::matcolor" "$desktop::ws_glowon";					
-					}
-				} else {
-					set "ws_weapon4_noammo::visible" "1";
-					set "ws_weapon4_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon4_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon4::visible" "0";
-			}
-			
-			if ( "gui::weapon5" ) {
-				set "ws_weapon5::visible" "1";
-				if ( "gui::weapon5_ammo" != 0 ) {
-					set "ws_weapon5_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 5 ) {
-						set "ws_weapon5_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon5_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon5_icon::matcolor" "$desktop::ws_on";	
-						set "ws_weapon5_glow::matcolor" "$desktop::ws_glowon";					
-					}
-				} else {
-					set "ws_weapon5_noammo::visible" "1";
-					set "ws_weapon5_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon5_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon5::visible" "0";
-			}
-			
-			if ( "gui::weapon6" ) {
-				set "ws_weapon6::visible" "1";
-				if ( "gui::weapon6_ammo" != 0 ) {
-					set "ws_weapon6_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 6 ) {
-						set "ws_weapon6_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon6_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon6_icon::matcolor" "$desktop::ws_on";	
-						set "ws_weapon6_glow::matcolor" "$desktop::ws_glowon";					
-					}
-				} else {
-					set "ws_weapon6_noammo::visible" "1";
-					set "ws_weapon6_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon6_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon6::visible" "0";
-			}
-			
-			if ( "gui::weapon7" ) {
-				set "ws_weapon7::visible" "1";
-				if ( "gui::weapon7_ammo" != 0 ) {
-					set "ws_weapon7_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 7 ) {
-						set "ws_weapon7_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon7_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon7_icon::matcolor" "$desktop::ws_on";	
-						set "ws_weapon7_glow::matcolor" "$desktop::ws_glowon";					
-					}
-				} else {
-					set "ws_weapon7_noammo::visible" "1";
-					set "ws_weapon7_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon7_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon7::visible" "0";
-			}
-			
-			if ( "gui::weapon8" ) {
-				set "ws_weapon8::visible" "1";
-				if ( "gui::weapon8_ammo" != 0 ) {
-					set "ws_weapon8_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 8 ) {
-						set "ws_weapon8_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon8_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon8_icon::matcolor" "$desktop::ws_on";	
-						set "ws_weapon8_glow::matcolor" "$desktop::ws_glowon";					
-					}
-				} else {
-					set "ws_weapon8_noammo::visible" "1";
-					set "ws_weapon8_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon8_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon8::visible" "0";
-			}					
-			
-			if ( "gui::weapon9" ) {
-				set "ws_weapon9::visible" "1";
-				if ( "gui::weapon9_ammo" != 0 ) {
-					set "ws_weapon9_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 9 ) {
-						set "ws_weapon9_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon9_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon9_icon::matcolor" "$desktop::ws_on";		
-						set "ws_weapon9_glow::matcolor" "$desktop::ws_glowon";				
-					}
-				} else {
-					set "ws_weapon9_noammo::visible" "1";
-					set "ws_weapon9_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon9_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon9::visible" "0";
-			}					
-			
-			if ( "gui::weapon10" ) {
-				set "ws_weapon10::visible" "1";
-				if ( "gui::weapon10_ammo" != 0 ) {
-					set "ws_weapon10_noammo::visible" "0";
-					if ( "gui::player_idealWeapon" != 10 ) {
-						set "ws_weapon10_icon::matcolor" "$desktop::ws_off";
-						set "ws_weapon10_glow::matcolor" "$desktop::ws_glowoff";
-					} else {
-						set "ws_weapon10_icon::matcolor" "$desktop::ws_on";		
-						set "ws_weapon10_glow::matcolor" "$desktop::ws_glowon";				
-					}
-				} else {
-					set "ws_weapon10_noammo::visible" "1";
-					set "ws_weapon10_icon::matcolor" "$desktop::ws_off";
-					set "ws_weapon10_glow::matcolor" "$desktop::ws_glowoff";
-				}
-			} else {
-				set "ws_weapon10::visible" "0";
-			}					
-		}
-
-		onTime 1000 {
-			set "notime" "0";
-			set "visible" "0";
-			set "desktop::weapswitch" "0";
-		}
-
-		windowDef ws_name
-		{
-			rect	0,42,640,40
-			forecolor	0.690,0.784,0.568,1
 			textalign	1
-			font	"fonts/marine"
-			textscale	.25
-			textstyle	1
-			text	"gui::weaponname"
-		}
-		windowDef ws_weapon0
-		{
-			rect	("desktop::switchLeft" + "gui::weapon0_index" * 30),20,26,26
-			windowDef ws_weapon0_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon0_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon0_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon0_icon"
-			}
-			windowDef ws_weapon0_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-		windowDef ws_weapon1
-		{
-			rect	("desktop::switchLeft" + "gui::weapon1_index" * 30),20,26,26
-			windowDef ws_weapon1_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon1_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon1_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon1_icon"
-			}
-			windowDef ws_weapon1_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-		windowDef ws_weapon2
-		{
-			rect	("desktop::switchLeft" + "gui::weapon2_index" * 30),20,26,26
-			windowDef ws_weapon2_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon2_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon2_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon2_icon"
-			}
-			windowDef ws_weapon2_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-		windowDef ws_weapon3
-		{
-			rect	("desktop::switchLeft" + "gui::weapon3_index" * 30),20,26,26
-			windowDef ws_weapon3_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon3_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon3_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon3_icon"
-			}
-			windowDef ws_weapon3_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-		windowDef ws_weapon4
-		{
-			rect	("desktop::switchLeft" + "gui::weapon4_index" * 30),20,26,26
-			windowDef ws_weapon4_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon4_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon4_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon4_icon"
-			}
-			windowDef ws_weapon4_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-		windowDef ws_weapon5
-		{
-			rect	("desktop::switchLeft" + "gui::weapon5_index" * 30),20,26,26
-			windowDef ws_weapon5_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon5_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon5_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon5_icon"
-			}
-			windowDef ws_weapon5_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-		windowDef ws_weapon6
-		{
-			rect	("desktop::switchLeft" + "gui::weapon6_index" * 30),20,26,26
-			windowDef ws_weapon6_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon6_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon6_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon6_icon"
-			}
-			windowDef ws_weapon6_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-		windowDef ws_weapon7
-		{
-			rect	("desktop::switchLeft" + "gui::weapon7_index" * 30),20,26,26
-			windowDef ws_weapon7_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon7_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon7_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon7_icon"
-			}
-			windowDef ws_weapon7_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-		windowDef ws_weapon8
-		{
-			rect	("desktop::switchLeft" + "gui::weapon8_index" * 30),20,26,26
-			windowDef ws_weapon8_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon8_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon8_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon8_icon"
-			}
-			windowDef ws_weapon8_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-		windowDef ws_weapon9
-		{
-			rect	("desktop::switchLeft" + "gui::weapon9_index" * 30),20,26,26
-			windowDef ws_weapon9_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon9_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon9_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon9_icon"
-			}
-			windowDef ws_weapon9_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-		windowDef ws_weapon10
-		{
-			rect	("desktop::switchLeft" + "gui::weapon10_index" * 30),20,26,26
-			windowDef ws_weapon10_bg
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbar"
-				matcolor	0,0,0,0.5
-				shear	0,-.22
-			}
-			windowDef ws_weapon10_glow
-			{
-				rect	0,0,26,26
-				background	"gfx/guis/hud/wsbarglow"
-				matcolor	0.690,0.784,0.568,0
-				shear	0,-.22
-			}
-			windowDef ws_weapon10_icon
-			{
-				rect	4,4,18,18
-				background	"gui::weapon10_icon"
-			}
-			windowDef ws_weapon10_noammo
-			{
-				rect	4,4,18,18
-				background	"gfx/guis/hud/noammo"
-				matcolor	1,1,1,1
-				visible	0
-			}
-		}
-	}
-	windowDef powerups
-	{
-		rect	520,0,120,480
-		visible	("gui::stat_visible" == 0)
-		windowDef powerup_flag
-		{
-			rect	38,435,84,39
-			visible	"gui::powerup_flag_visible"
-			windowDef powerup_flag_bg
-			{
-				rect	2,-1,81,42
-				background	"gfx/guis/hud/powerup_bgbar"
-				visible	1
-				matcolor	0,0,0,1
-				matscalex	-1
-				matscaley	-1
-			}
-			windowDef powerup_flag_icon
-			{
-				rect	23,8,22,22
-				visible	1
-				background	"gfx/guis/hud/ctf_flag"
-				matcolor	1,0.482,0.0156,0.8
-				shear	0,-.22
-
-				onTime 0 {
-					transition "powerup_flag_icon::rect" "$powerup_flag_icon::rect" "$d_powerup_flag_icon::rect" "150" ;
-				}
-
-				onTime +150 {
-					transition "powerup_flag_icon::rect" "$d_powerup_flag_icon::rect" "$powerup_flag_icon::rect" "500" ;
-				}
-
-				onTime +500 {
-					resettime "0" ;
-				}
-
-			}
-			windowDef d_powerup_flag_icon
-			{
-				rect	20,5,28,28
-				visible	0
-				background	"gfx/guis/hud/ctf_flag"
-				matcolor	1,0.482,0.0156,0.8
-				shear	0,-.22
-			}
-		}
-		windowDef powerup4
-		{
-			rect	37,400,84,38
-			visible	"gui::powerup4_visible"
-			windowDef powerup4_bg
-			{
-				rect	2,0,81,42
-				background	"gfx/guis/hud/powerup_bgbar"
-				visible	1
-				matcolor	0,0,0,1
-				matscalex	-1
-				matscaley	-1
-			}
-			windowDef powerup4_icon
-			{
-				rect	21,7,28,28
-				visible	1
-				background	"gui::powerup4_icon"
-				matcolor	1,1,1,1
-			}
-			windowDef powerup4_time
-			{
-				rect	48,7,31,25
-				visible	1
-				text	"gui::powerup4_time"
-				forecolor	0.866,0.921,0.764,1
-				textscale	0.4
-				font	"fonts/chain"
-				shear	0,-.22
-			}
-		}
-		windowDef powerup0
-		{
-			rect	37,365,84,38
-			visible	"gui::powerup0_visible"
-			windowDef powerup0_bg
-			{
-				rect	2,0,81,42
-				background	"gfx/guis/hud/powerup_bgbar"
-				visible	1
-				matcolor	0,0,0,1
-				matscalex	-1
-				matscaley	-1
-			}
-			windowDef powerup0_icon
-			{
-				rect	21,7,28,28
-				visible	1
-				background	"gui::powerup0_icon"
-				matcolor	1,1,1,1
-			}
-			windowDef powerup0_time
-			{
-				rect	48,7,31,25
-				visible	1
-				text	"gui::powerup0_time"
-				forecolor	0.866,0.921,0.764,1
-				textscale	0.4
-				font	"fonts/chain"
-				shear	0,-.22
-			}
-		}
-		windowDef powerup1
-		{
-			rect	37,330,84,38
-			visible	"gui::powerup1_visible"
-			windowDef powerup1_bg
-			{
-				rect	2,0,81,42
-				background	"gfx/guis/hud/powerup_bgbar"
-				visible	1
-				matcolor	0,0,0,1
-				matscalex	-1
-				matscaley	-1
-			}
-			windowDef powerup1_icon
-			{
-				rect	21,7,28,28
-				visible	1
-				background	"gui::powerup1_icon"
-				matcolor	1,1,1,1
-			}
-			windowDef powerup1_time
-			{
-				rect	48,7,31,25
-				visible	1
-				text	"gui::powerup1_time"
-				forecolor	0.866,0.921,0.764,1
-				textscale	0.4
-				font	"fonts/chain"
-				shear	0,-.22
-			}
-		}
-		windowDef powerup2
-		{
-			rect	37,295,84,38
-			visible	"gui::powerup2_visible"
-			windowDef powerup2_bg
-			{
-				rect	2,0,81,42
-				background	"gfx/guis/hud/powerup_bgbar"
-				visible	1
-				matcolor	0,0,0,1
-				matscalex	-1
-				matscaley	-1
-			}
-			windowDef powerup2_icon
-			{
-				rect	21,7,28,28
-				visible	1
-				background	"gui::powerup2_icon"
-				matcolor	1,1,1,1
-			}
-			windowDef powerup2_time
-			{
-				rect	48,7,31,25
-				visible	1
-				text	"gui::powerup2_time"
-				forecolor	0.866,0.921,0.764,1
-				textscale	0.4
-				font	"fonts/chain"
-				shear	0,-.22
-			}
-		}
-		windowDef powerup3
-		{
-			rect	37,260,84,38
-			visible	"gui::powerup3_visible"
-			windowDef powerup3_bg
-			{
-				rect	2,0,81,42
-				background	"gfx/guis/hud/powerup_bgbar"
-				visible	1
-				matcolor	0,0,0,1
-				matscalex	-1
-				matscaley	-1
-			}
-			windowDef powerup3_icon
-			{
-				rect	21,7,28,28
-				visible	1
-				background	"gui::powerup3_icon"
-				matcolor	1,1,1,1
-			}
-			windowDef powerup3_time
-			{
-				rect	48,7,31,25
-				visible	1
-				text	"gui::powerup3_time"
-				forecolor	0.866,0.921,0.764,1
-				textscale	0.4
-				font	"fonts/chain"
-				shear	0,-.22
-			}
 		}
 	}
 	windowDef deathanim_remove
@@ -1766,32 +1153,6 @@ windowDef Desktop
 		}
 
 	}
-	windowDef round
-	{
-		rect	0,0,640,480
-		visible	0
-		backcolor	0,0,0,1
-		notime	1
-
-		onTime 0 {
-			set "visible" "1";
-		}
-
-		onTime +3000 {
-			set "visible" "0";
-		}
-
-		windowDef round_text
-		{
-			rect	0,180,640,100
-			visible	1
-			forecolor	1,1,1,1
-			text	"gui::rtext"
-			textscale	1
-			textalign	1
-			font	"fonts/r_strogg"
-		}
-	}
 	windowDef outofbounds
 	{
 		rect	0,0,640,480
@@ -1867,6 +1228,266 @@ windowDef Desktop
 			visible	1
 			forecolor	0,1,0.247,1
 			text	"Battle Start!!!"
+			textscale	1
+			textalign	1
+			textstyle	2
+			font	"fonts/marine"
+		}
+	}
+	windowDef monsterselection1
+	{
+		rect	0,350,640,80
+		visible	1
+		windowDef monster_slot_1
+		{
+			rect	33,0,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_slimy_transfer"
+			matcolor	1,1,1,1
+		}
+		windowDef monster_slot_2
+		{
+			rect	155,0,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_strogg_marine_mgun"
+			matcolor	1,1,1,1
+		}
+		windowDef monster_slot_3
+		{
+			rect	277,0,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_grunt"
+			matcolor	1,1,1,1
+		}
+		windowDef monster_slot_4
+		{
+			rect	399,-1,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_scientist"
+			matcolor	1,1,1,1
+		}
+		windowDef monster_slot_5
+		{
+			rect	521,-2,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_convoy_ground"
+			matcolor	1,1,1,1
+		}
+		windowDef monster_slot_1_t
+		{
+			rect	92,49,25,31
+			visible	1
+			forecolor	0,0,0,1
+			text	"1"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+		windowDef monster_slot_2_t
+		{
+			rect	214,49,25,30
+			visible	1
+			forecolor	0,0,0,1
+			text	"2"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+		windowDef monster_slot_3_t
+		{
+			rect	336,49,25,30
+			visible	1
+			forecolor	0,0,0,1
+			text	"3"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+		windowDef monster_slot_4_t
+		{
+			rect	458,49,25,30
+			visible	1
+			forecolor	0,0,0,1
+			text	"4"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+		windowDef monster_slot_5_t
+		{
+			rect	580,49,25,30
+			visible	1
+			forecolor	0,0,0,1
+			text	"5"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+	}
+	windowDef monsterselection2
+	{
+		rect	0,350,640,80
+		visible	0
+		windowDef monster_slot_6
+		{
+			rect	33,0,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_gunner"
+			matcolor	1,1,1,1
+		}
+		windowDef monster_slot_7
+		{
+			rect	155,0,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_berserker"
+			matcolor	1,1,1,1
+		}
+		windowDef monster_slot_8
+		{
+			rect	277,0,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_iron_maiden"
+			matcolor	1,1,1,1
+		}
+		windowDef monster_slot_9
+		{
+			rect	399,0,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_gladiator"
+			matcolor	1,1,1,1
+		}
+		windowDef monster_slot_10
+		{
+			rect	521,-1,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_stream_protector"
+			matcolor	1,1,1,1
+		}
+		windowDef monster_slot_6_t
+		{
+			rect	92,49,25,31
+			visible	1
+			forecolor	0,0,0,1
+			text	"6"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+		windowDef monster_slot_7_t
+		{
+			rect	214,49,25,30
+			visible	1
+			forecolor	0,0,0,1
+			text	"7"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+		windowDef monster_slot_8_t
+		{
+			rect	336,49,25,30
+			visible	1
+			forecolor	0,0,0,1
+			text	"8"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+		windowDef monster_slot_9_t
+		{
+			rect	458,49,25,30
+			visible	1
+			forecolor	0,0,0,1
+			text	"9"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+		windowDef monster_slot_10_t
+		{
+			rect	563,48,39,30
+			visible	1
+			forecolor	0,0,0,1
+			text	"10"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+	}
+	windowDef round
+	{
+		rect	0,0,640,480
+		visible	0
+		backcolor	0,0,0,1
+		notime	1
+
+		onTime 0 {
+			set "visible" "1";
+		}
+
+		onTime +3000 {
+			set "visible" "0";
+		}
+
+		windowDef round_text
+		{
+			rect	0,180,640,100
+			visible	1
+			forecolor	1,1,1,1
+			text	"gui::rtext"
+			textscale	1
+			textalign	1
+			font	"fonts/r_strogg"
+		}
+	}
+	windowDef notyetunlocked
+	{
+		rect	0,0,640,480
+		visible	0
+		notime	1
+
+		onTime 0 {
+			set "visible" "1";
+			transition "notyetunlocked_text::forecolor" "1,0,0,1" "1,0,0,0" "800" ;
+		}
+
+		onTime +1000 {
+			set "visible" "0";
+		}
+
+		windowDef notyetunlocked_text
+		{
+			rect	0,180,640,82
+			visible	1
+			forecolor	1,0,0,1
+			text	"Unit Not Yet Unlocked!"
+			textscale	0.9
+			textalign	1
+			textstyle	2
+			font	"fonts/marine"
+		}
+	}
+	windowDef notenoughecon
+	{
+		rect	0,0,640,480
+		visible	0
+		notime	1
+
+		onTime 0 {
+			set "visible" "1";
+			transition "notenoughecon_text::forecolor" "1,0,0,1" "1,0,0,0" "800" ;
+		}
+
+		onTime +1000 {
+			set "visible" "0";
+		}
+
+		windowDef notenoughecon_text
+		{
+			rect	0,180,640,82
+			visible	1
+			forecolor	1,0,0,1
+			text	"No Enough Econ!"
 			textscale	1
 			textalign	1
 			textstyle	2

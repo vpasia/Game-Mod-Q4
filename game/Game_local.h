@@ -40,6 +40,7 @@ extern idRenderWorld *				gameRenderWorld;
 // classes used by idGameLocal
 class idEntity;
 class idActor;
+class PlayerUnitInventory;
 class idPlayer;
 class idCamera;
 class idWorldspawn;
@@ -125,6 +126,7 @@ void gameError( const char *fmt, ... );
 #include "FreeView.h"
 
 #include "RoundManager.h"
+#include "PlayerUnitInventory.h"
 
 //============================================================================
 
@@ -310,6 +312,8 @@ private:
 	int						spawnId;
 };
 
+
+
 // RAVEN BEGIN
 // abahr: forward declaration
 class rvGravityArea;
@@ -343,6 +347,7 @@ public:
 	idDict					persistentLevelInfo;	// contains args that are kept around between levels
 
 	PlayerUnitInventory		puinventory;
+	idUserInterface*		restartUI;
 
 // RAVEN BEGIN
 // bdube: client entities

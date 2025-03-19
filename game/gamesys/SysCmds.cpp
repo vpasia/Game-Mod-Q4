@@ -1132,6 +1132,101 @@ void Cmd_Player_Pos_f(const idCmdArgs& args) {
 }
 
 /*
+=================
+Cmd_Round_Init_f
+=================
+*/
+void Cmd_Round_Init_f(const idCmdArgs& args) 
+{
+	gameLocal.roundManager.Init();
+}
+
+/*
+=================
+Cmd_Buy_Unit_f
+=================
+*/
+
+void Cmd_Buy_Unit_f(const idCmdArgs& args)
+{
+	int index = atoi(args.Argv(1));
+
+	bool buyAttempt = gameLocal.puinventory.AttemptToBuyUnit(index);
+
+	if (!buyAttempt && gameLocal.restartUI) 
+	{
+		gameLocal.restartUI->HandleNamedEvent("failedPurchase");
+	}
+}
+
+/*
+=================
+Cmd_Skip_To_Round_f
+=================
+*/
+void Cmd_Skip_To_Round_f(const idCmdArgs& args) 
+{
+
+	if (args.Argc() != 2) 
+	{
+		gameLocal.Printf("usage: skipToRound <round number>\n");
+		return;
+	}
+
+	gameLocal.roundManager.Init();
+	gameLocal.roundManager.round = atoi(args.Argv(1));
+	gameLocal.roundManager.SetRoundEcon();
+}
+
+/*
+=================
+Cmd_Set_Econ_f
+=================
+*/
+void Cmd_Set_Econ_f(const idCmdArgs& args) {
+
+	if (args.Argc() != 2)
+	{
+		gameLocal.Printf("usage: setEcon <econ>\n");
+		return;
+	}
+
+	int econ = atoi(args.Argv(1));
+
+	if (econ <= 0) 
+	{
+		gameLocal.Printf("Econ must be greater than zero!\n");
+		return;
+	}
+
+	gameLocal.roundManager.roundEcon = econ;
+}
+
+/*
+=================
+Cmd_Give_Cash_f
+=================
+*/
+void Cmd_Give_Cash_f(const idCmdArgs& args) {
+
+	if (args.Argc() != 2)
+	{
+		gameLocal.Printf("usage: giveCash <cash>\n");
+		return;
+	}
+
+	int cash = atoi(args.Argv(1));
+
+	if (cash <= 0)
+	{
+		gameLocal.Printf("Cash must be greater than zero!\n");
+		return;
+	}
+
+	gameLocal.puinventory.GiveCash(cash);
+}
+
+/*
 ===================
 Cmd_Spawn_f
 ===================
@@ -3117,6 +3212,11 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand( "playerModel",			Cmd_PlayerModel_f,			CMD_FL_GAME|CMD_FL_CHEAT,	"sets the given model on the player", idCmdSystem::ArgCompletion_Decl<DECL_MODELDEF> );
 	cmdSystem->AddCommand( "flashlight",			Cmd_Flashlight_f,			CMD_FL_GAME|CMD_FL_CHEAT,	"toggle actor's flashlight", idGameLocal::ArgCompletion_AIName );
 	cmdSystem->AddCommand("player_pos",				Cmd_Player_Pos_f,			CMD_FL_GAME,				"gives information about player position and yaw");
+	cmdSystem->AddCommand("skipToRound",			Cmd_Skip_To_Round_f,		CMD_FL_GAME,				"Skips to a specific round.");
+	cmdSystem->AddCommand("setEcon",				Cmd_Set_Econ_f,				CMD_FL_GAME,				"Sets Round Econ");
+	cmdSystem->AddCommand("giveCash",				Cmd_Give_Cash_f,				CMD_FL_GAME,				"Give Player Cash for Buy Menu");
+	cmdSystem->AddCommand("__init_rounds",			Cmd_Round_Init_f,			CMD_FL_GAME,				"Initializes Round Manager");
+	cmdSystem->AddCommand("__buy",					Cmd_Buy_Unit_f,				CMD_FL_GAME,				"Attempts to buy new unit");
 	
 	cmdSystem->AddCommand( "shuffleTeams",			Cmd_ShuffleTeams_f,			CMD_FL_GAME,				"shuffle teams" );
 // RAVEN BEGIN

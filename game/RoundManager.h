@@ -10,6 +10,7 @@ class RoundManager
 		int roundEcon;
 		bool roundStarted;
 		bool roundEnded;
+		bool playerLost;
 
 		idList<int> playerUnits;
 		idList<int> enemyUnits;
@@ -18,6 +19,7 @@ class RoundManager
 
 		void SpawnEnemyUnits();
 		void RemoveEnemyUnit(int entityNum);
+		void ClearEnemyUnits();
 
 		void AddPlayerUnit(int entityNum);
 		void RemovePlayerUnit(int entityNum);
@@ -27,7 +29,7 @@ class RoundManager
 		bool CheckEndRound();
 
 		bool SpendEcon(int index);
-		void UpdateRoundEcon();
+		void SetRoundEcon();
 
 		void Think();
 };

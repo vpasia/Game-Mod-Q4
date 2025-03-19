@@ -331,6 +331,7 @@
     <ClCompile Include="game\physics\Push.cpp" />
     <ClCompile Include="game\Playback.cpp" />
     <ClCompile Include="game\Player.cpp" />
+    <ClCompile Include="game\PlayerUnitInventory.cpp" />
     <ClCompile Include="game\PlayerView.cpp" />
     <ClCompile Include="game\Player_Cheats.cpp" />
     <ClCompile Include="game\Player_States.cpp" />
@@ -455,6 +456,7 @@
     <ClInclude Include="game\physics\Physics_VehicleMonster.h" />
     <ClInclude Include="game\physics\Push.h" />
     <ClInclude Include="game\Player.h" />
+    <ClInclude Include="game\PlayerUnitInventory.h" />
     <ClInclude Include="game\PlayerView.h" />
     <ClInclude Include="game\Projectile.h" />
     <ClInclude Include="game\Pvs.h" />

@@ -20097,6 +20097,7 @@ windowDef Desktop
 				set "new_t_bstart::textscale" "0.33" ;
 				
 				consoleCMD "map game/mcc_landing" ;
+				consoleCMD "__init_rounds" ;
 				consoleCMD "killMonsters" ;
 				consoleCMD "noclip" ;
 				consoleCMD "notarget" ;

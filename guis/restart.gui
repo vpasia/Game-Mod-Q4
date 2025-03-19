@@ -15,248 +15,147 @@ windowDef Desktop
 			set "cmd" "play main_menu_selection" ;
 		}
 	}
+
+	onInit {
+		set "gui::buySelected" "-1";
+		set "gui::purchase_1" "0";
+		set "gui::purchase_2" "0";
+		set "gui::purchase_3" "0";
+		set "gui::purchase_4" "0";
+		set "gui::purchase_5" "0";
+		set "gui::purchase_6" "0";
+	}
+
+	onNamedEvent updateBuySelected {
+		if( "gui::buySelected" == 1)
+		{
+			set "monster_slot_1::backcolor" "1,1,0.498,1";
+			set "monster_slot_2::backcolor" "1,1,1,1";
+			set "monster_slot_3::backcolor" "1,1,1,1";
+			set "monster_slot_4::backcolor" "1,1,1,1";
+			set "monster_slot_5::backcolor" "1,1,1,1";
+			set "monster_slot_6::backcolor" "1,1,1,1";
+		}
+		else if( "gui::buySelected" == 2)
+		{
+			set "monster_slot_1::backcolor" "1,1,1,1";
+			set "monster_slot_2::backcolor" "1,1,0.498,1";
+			set "monster_slot_3::backcolor" "1,1,1,1";
+			set "monster_slot_4::backcolor" "1,1,1,1";
+			set "monster_slot_5::backcolor" "1,1,1,1";
+			set "monster_slot_6::backcolor" "1,1,1,1";
+		}
+		else if( "gui::buySelected" == 3)
+		{
+			set "monster_slot_1::backcolor" "1,1,1,1";
+			set "monster_slot_2::backcolor" "1,1,1,1";
+			set "monster_slot_3::backcolor" "1,1,0.498,1";
+			set "monster_slot_4::backcolor" "1,1,1,1";
+			set "monster_slot_5::backcolor" "1,1,1,1";
+			set "monster_slot_6::backcolor" "1,1,1,1";
+		}
+		else if( "gui::buySelected" == 4)
+		{
+			set "monster_slot_1::backcolor" "1,1,1,1";
+			set "monster_slot_2::backcolor" "1,1,1,1";
+			set "monster_slot_3::backcolor" "1,1,1,1";
+			set "monster_slot_4::backcolor" "1,1,0.498,1";
+			set "monster_slot_5::backcolor" "1,1,1,1";
+			set "monster_slot_6::backcolor" "1,1,1,1";
+		}
+		else if( "gui::buySelected" == 5)
+		{
+			set "monster_slot_1::backcolor" "1,1,1,1";
+			set "monster_slot_2::backcolor" "1,1,1,1";
+			set "monster_slot_3::backcolor" "1,1,1,1";
+			set "monster_slot_4::backcolor" "1,1,1,1";
+			set "monster_slot_5::backcolor" "1,1,0.498,1";
+			set "monster_slot_6::backcolor" "1,1,1,1";
+		}
+		else if( "gui::buySelected" == 6)
+		{
+			set "monster_slot_1::backcolor" "1,1,1,1";
+			set "monster_slot_2::backcolor" "1,1,1,1";
+			set "monster_slot_3::backcolor" "1,1,1,1";
+			set "monster_slot_4::backcolor" "1,1,1,1";
+			set "monster_slot_5::backcolor" "1,1,1,1";
+			set "monster_slot_6::backcolor" "1,1,0.498,1";
+		}
+		else
+		{
+			set "monster_slot_1::backcolor" "1,1,1,1";
+			set "monster_slot_2::backcolor" "1,1,1,1";
+			set "monster_slot_3::backcolor" "1,1,1,1";
+			set "monster_slot_4::backcolor" "1,1,1,1";
+			set "monster_slot_5::backcolor" "1,1,1,1";
+			set "monster_slot_6::backcolor" "1,1,1,1";
+		}
+	}
+
+	onNamedEvent failedPurchase {
+		set "gui::buySelected" "-1";
+		resettime "failedpurchase" "0";
+	}
+
+	onNamedEvent noSelected {
+		set "gui::buySelected" "-1";
+		resettime "noselected" "0";
+	}
+
+	onNamedEvent updateSlot1 {
+		if("gui::purchased_1" == 1)
+		{
+			set "monster_slot_1::backcolor" "0,1,0,1";
+		}
+	}
+
+	onNamedEvent updateSlot2 {
+		if ("gui::purchased_2" == 1)
+		{
+			set "monster_slot_2::backcolor" "0,1,0,1";
+		}
+	}
+
+	onNamedEvent updateSlot3 {
+		if ("gui::purchased_3" == 1)
+		{
+			set "monster_slot_3::backcolor" "0,1,0,1";
+		}
+	}
+
+	onNamedEvent updateSlot4 {
+		if ("gui::purchased_4" == 1)
+		{
+			set "monster_slot_4::backcolor" "0,1,0,1";
+		}
+	}
+
+	onNamedEvent updateSlot5 {
+		if ("gui::purchased_5" == 1)
+		{
+			set "monster_slot_5::backcolor" "0,1,0,1";
+		}
+	}
+
+	onNamedEvent updateSlot6 {
+		if ("gui::purchased_6" == 1)
+		{
+			set "monster_slot_6::backcolor" "0,1,0,1";
+		}
+	}
+
 	windowDef msg_black
 	{
 		rect	0,0,640,480
 		visible	1
-		backcolor	0,0,0,0.94
+		backcolor	0,0,0,0.933
 	}
 	windowDef msg_bg
 	{
-		rect	140,0,360,480
+		rect	0,0,640,480
 		visible	1
 		background	"gfx/guis/mainmenu/popup_bg"
-		matcolor	1,1,1,1
-	}
-	windowDef msg_top
-	{
-		rect	140,129,360,23
-		visible	1
-		background	"gfx/guis/mainmenu/popup_top"
-		matcolor	0,0,0,0.7
-	}
-	windowDef msg_mid
-	{
-		rect	140,152,360,143
-		visible	1
-		background	"gfx/guis/mainmenu/popup_mid"
-		matcolor	0,0,0,0.7
-	}
-	windowDef msg_btm
-	{
-		rect	140,295,360,46
-		visible	1
-		background	"gfx/guis/mainmenu/popup_btm"
-		matcolor	0,0,0,0.7
-	}
-	windowDef corner1
-	{
-		rect	169,172,14,14
-		visible	1
-		background	"gfx/guis/mainmenu/corner"
-		matcolor	0.564,0.603,0.286,0.4
-	}
-	windowDef corner2
-	{
-		rect	169,212,14,14
-		visible	1
-		background	"gfx/guis/mainmenu/corner"
-		matcolor	0.564,0.603,0.286,0.4
-	}
-	windowDef corner3
-	{
-		rect	169,252,14,14
-		visible	1
-		background	"gfx/guis/mainmenu/corner"
-		matcolor	0.564,0.603,0.286,0.4
-	}
-	windowDef corner4
-	{
-		rect	169,292,14,14
-		visible	1
-		background	"gfx/guis/mainmenu/corner"
-		matcolor	0.564,0.603,0.286,0.4
-	}
-	windowDef b1
-	{
-		rect	159,162,324,38
-		visible	1
-		background	"gfx/guis/mainmenu/b6_light"
-		matcolor	0.545,0.588,0.294,0.4
-	}
-	windowDef b2
-	{
-		rect	159,202,324,38
-		visible	1
-		background	"gfx/guis/mainmenu/b6_light"
-		matcolor	0.545,0.588,0.294,0.4
-	}
-	windowDef b3
-	{
-		rect	159,242,324,38
-		visible	1
-		background	"gfx/guis/mainmenu/b6_light"
-		matcolor	0.545,0.588,0.294,0.4
-	}
-	windowDef b4
-	{
-		rect	159,282,324,38
-		visible	1
-		background	"gfx/guis/mainmenu/b6_light"
-		matcolor	0.545,0.588,0.294,0.4
-	}
-	windowDef t1
-	{
-		rect	160,166,321,29
-		forecolor	1,1,1,0.6
-		text	"#str_200320"
-		visible	1
-		textscale	0.33
-		font	"fonts/marine"
-		textalignx	22
-
-		onAction {
-			set cmd "restart" ;
-			
-			set "cmd" "play main_menu_selection" ;
-		}
-
-		onMouseEnter {
-			set "t1::forecolor_w" "1";
-			set "b1::matcolor_w" "0.8";
-			set "corner1::matcolor"  "$desktop::orange" ;
-			set "tip::visible" "1" ;
-			set "tip::text" "#str_200321" ;
-			
-			set "cmd" "play main_menu_mouseover" ;	
-		}
-
-		onMouseExit {
-			transition "b1::matcolor_w" "0.8" "0.4" "300" ;
-			transition "t1::forecolor_w"  "1" "0.6" "300" ; 
-			transition "corner1::matcolor"  "$desktop::orange" "$desktop::corner" "300" ;
-			set "tip::visible" "0";
-		}
-
-	}
-	windowDef t2
-	{
-		rect	160,206,321,29
-		forecolor	1,1,1,0.6
-		text	"#str_200001"
-		visible	1
-		textscale	0.33
-		font	"fonts/marine"
-		textalignx	22
-
-		onAction {
-			set	"cmd"	"disconnect mainmenu fromRestart_toLoad" ;
-			
-			set "cmd" "play main_menu_selection" ;
-		}
-
-		onMouseEnter {
-			set "t2::forecolor_w" "1";
-			set "b2::matcolor_w" "0.8";
-			set "corner2::matcolor"  "$desktop::orange" ;
-			set "tip::visible" "1" ;
-			set "tip::text" "#str_200914" ;
-			
-			set "cmd" "play main_menu_mouseover" ;	
-		}
-
-		onMouseExit {
-			transition "b2::matcolor_w" "0.8" "0.4" "300" ;
-			transition "t2::forecolor_w"  "1" "0.6" "300" ; 
-			transition "corner2::matcolor"  "$desktop::orange" "$desktop::corner" "300" ;
-			set "tip::visible" "0";
-		}
-
-	}
-	windowDef t3
-	{
-		rect	160,246,321,29
-		forecolor	1,1,1,0.6
-		text	"#str_200188"
-		visible	1
-		textscale	0.33
-		font	"fonts/marine"
-		textalignx	22
-
-		onAction {
-			set "cmd" "disconnect mainmenu" ;
-			
-			set "cmd" "play main_menu_selection" ;
-		}
-
-		onMouseEnter {
-			set "t3::forecolor_w" "1";
-			set "b3::matcolor_w" "0.8";
-			set "corner3::matcolor"  "$desktop::orange" ;
-			set "tip::visible" "1" ;
-			set "tip::text" "#str_200915" ;
-			
-			set "cmd" "play main_menu_mouseover" ;	
-		}
-
-		onMouseExit {
-			transition "b3::matcolor_w" "0.8" "0.4" "300" ;
-			transition "t3::forecolor_w"  "1" "0.6" "300" ; 
-			transition "corner3::matcolor"  "$desktop::orange" "$desktop::corner" "300" ;
-			set "tip::visible" "0";
-		}
-
-	}
-	windowDef t4
-	{
-		rect	160,286,321,29
-		forecolor	1,1,1,0.6
-		text	"#str_200169"
-		visible	1
-		textscale	0.33
-		font	"fonts/marine"
-		textalignx	22
-
-		onAction {
-			resettime "anim_pop_exitIn" "0" ;
-			
-			set "cmd" "play main_menu_selection" ;
-		}
-
-		onMouseEnter {
-			set "t4::forecolor_w" "1";
-			set "b4::matcolor_w" "0.8";
-			set "corner4::matcolor"  "$desktop::orange" ;
-			set "tip::visible" "1" ;
-			set "tip::text" "#str_200323" ;
-			
-			set "cmd" "play main_menu_mouseover" ;	
-		}
-
-		onMouseExit {
-			transition "b4::matcolor_w" "0.8" "0.4" "300" ;
-			transition "t4::forecolor_w"  "1" "0.6" "300" ; 
-			transition "corner4::matcolor"  "$desktop::orange" "$desktop::corner" "300" ;
-			set "tip::visible" "0";
-		}
-
-	}
-	windowDef tip
-	{
-		rect	0,362,640,30
-		visible	1
-		forecolor	1,1,1,1
-		text	""
-		textscale	0.2
-		textalign	1
-		font	"fonts/lowpixel"
-	}
-	windowDef q4text
-	{
-		rect	145,91,258,63
-		visible	1
-		background	"gfx/guis/mainmenu/q4text"
-		matcolor	1,1,1,1
+		matcolor	0,1,1,1
 	}
 	windowDef pop_p_exit
 	{
@@ -517,5 +416,683 @@ windowDef Desktop
 			set "desktop::active" "0" ;
 		}
 
+	}
+	windowDef buymenu
+	{
+		rect	0,79,641,400
+		visible	0
+		windowDef buycash
+		{
+			rect	399,157,225,94
+			visible	1
+			windowDef ammo_backbar
+			{
+				rect	-4,24,220,51
+				visible	1
+				background	"gfx/guis/hud/backbar"
+				matcolor	0,0,0,0.494
+				shear	0,-.22
+			}
+			windowDef ammo_valbar
+			{
+				rect	-1,22,200,54
+				visible	1
+				background	"gfx/guis/hud/valbar"
+				matcolor	0.701,0.815,0.431,0.2
+				shear	0,-.22
+			}
+			windowDef ammo_amount
+			{
+				rect	24,32,121,31
+				visible	1
+				forecolor	0.847,0.901,0.745,1
+				text	"gui::cash"
+				textscale	0.5
+				font	"fonts/chain"
+				shear	0,-.22
+				textalign	1
+			}
+		}
+		windowDef monster_slot_1
+		{
+			rect	31,66,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_convoy_ground.tga"
+			matcolor	1,1,1,1
+
+			onMouseEnter {
+				if( "gui::buySelected" != 1 && "gui::purchased_1" != 1 )
+				{
+					set "monster_slot_1::matcolor" "0,0,0,0.251";
+					set "cmd" "play main_menu_mouseover" ;	
+				}
+			}
+
+			onMouseExit {
+				if( "gui::buySelected" != 1 && "gui::purchased_1" != 1 )
+				{
+					transition "monster_slot_1::matcolor" "0,0,0,0.251" "1,1,1,1" "300" ;
+				}
+			}
+
+			onAction {
+				if("gui::purchased_1" != 1)
+				{
+					set "gui::buySelected" "1" ;
+					set "monster_slot_1::matcolor" "1,1,1,1";
+					namedEvent "updateBuySelected" ;
+				}
+			}
+
+		}
+		windowDef monster_slot_2
+		{
+			rect	153,66,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_gunner.tga"
+			matcolor	1,1,1,1
+
+			onMouseEnter {
+				if( "gui::buySelected" != 2 && "gui::purchased_2" != 1 )
+				{
+					set "monster_slot_2::matcolor" "0,0,0,0.251";
+					set "cmd" "play main_menu_mouseover" ;	
+				}
+			}
+
+			onMouseExit {
+				if( "gui::buySelected" != 2 && "gui::purchased_2" != 1 )
+				{
+					transition "monster_slot_2::matcolor" "0,0,0,0.251" "1,1,1,1" "300" ;
+				}
+			}
+
+			onAction {
+				if("gui::purchased_2" != 1)
+				{
+					set "gui::buySelected" "2" ;
+					set "monster_slot_2::matcolor" "1,1,1,1";
+					namedEvent "updateBuySelected" ;
+				}
+			}
+
+		}
+		windowDef monster_slot_3
+		{
+			rect	275,66,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_berserker.tga"
+			matcolor	1,1,1,1
+
+			onMouseEnter {
+				if( "gui::buySelected" != 3 && "gui::purchased_3" != 1)
+				{
+					set "monster_slot_3::matcolor" "0,0,0,0.251";
+					set "cmd" "play main_menu_mouseover" ;	
+				}
+			}
+
+			onMouseExit {
+				if( "gui::buySelected" != 3 && "gui::purchased_3" != 1)
+				{
+					transition "monster_slot_3::matcolor" "0,0,0,0.251" "1,1,1,1" "300" ;
+				}
+			}
+
+			onAction {
+				if("gui::purchased_3" != 1)
+				{
+					set "gui::buySelected" "3" ;
+					set "monster_slot_3::matcolor" "1,1,1,1";
+					namedEvent "updateBuySelected" ;
+				}
+			}
+
+		}
+		windowDef monster_slot_4
+		{
+			rect	397,65,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_iron_maiden.tga"
+			matcolor	1,1,1,1
+
+			onMouseEnter {
+				if( "gui::buySelected" != 4 && "gui::purchased_4" != 1)
+				{
+					set "monster_slot_4::matcolor" "0,0,0,0.251";
+					set "cmd" "play main_menu_mouseover" ;	
+				}
+			}
+
+			onMouseExit {
+				if( "gui::buySelected" != 4 && "gui::purchased_4" != 1)
+				{
+					transition "monster_slot_4::matcolor" "0,0,0,0.251" "1,1,1,1" "300" ;
+				}
+			}
+
+			onAction {
+				if("gui::purchased_4" != 1)
+				{
+					set "gui::buySelected" "4" ;
+					set "monster_slot_4::matcolor" "1,1,1,1";
+					namedEvent "updateBuySelected" ;
+				}
+			}
+
+		}
+		windowDef monster_slot_5
+		{
+			rect	519,64,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_gladiator.tga"
+			matcolor	1,1,1,1
+
+			onMouseEnter {
+				if( "gui::buySelected" != 5 && "gui::purchased_5" != 1)
+				{
+					set "monster_slot_5::matcolor" "0,0,0,0.251";
+					set "cmd" "play main_menu_mouseover" ;	
+				}
+			}
+
+			onMouseExit {
+				if( "gui::buySelected" != 5 && "gui::purchased_5" != 1)
+				{
+					transition "monster_slot_5::matcolor" "0,0,0,0.251" "1,1,1,1" "300" ;
+				}
+			}
+
+			onAction {
+				if("gui::purchased_5" != 1)
+				{
+					set "gui::buySelected" "5" ;
+					set "monster_slot_5::matcolor" "1,1,1,1";
+					namedEvent "updateBuySelected" ;	
+				}
+			}
+
+		}
+		windowDef monster_slot_6
+		{
+			rect	275,160,80,80
+			visible	1
+			backcolor	1,1,1,1
+			background	"gfx/monsters/monster_stream_protector"
+			matcolor	1,1,1,1
+
+			onMouseEnter {
+				if( "gui::buySelected" != 6 && "gui::purchased_6" != 1)
+				{
+					set "monster_slot_6::matcolor" "0,0,0,0.251";
+					set "cmd" "play main_menu_mouseover" ;	
+				}
+			}
+
+			onMouseExit {
+				if( "gui::buySelected" != 6 && "gui::purchased_6" != 1)
+				{
+					transition "monster_slot_6::matcolor" "0,0,0,0.251" "1,1,1,1" "300" ;
+				}
+			}
+
+			onAction {
+				if("gui::purchased_6" != 1)
+				{
+					set "gui::buySelected" "6" ;
+					set "monster_slot_6::matcolor" "1,1,1,1";
+					namedEvent "updateBuySelected" ;
+				}
+			}
+
+		}
+		windowDef monster_slot_1_t
+		{
+			rect	31,115,80,27
+			visible	1
+			forecolor	0,1,0,1
+			text	"$150"
+			textscale	0.5
+			font	"fonts/marine"
+			textalign	1
+		}
+		windowDef monster_slot_2_t
+		{
+			rect	153,115,80,30
+			visible	1
+			forecolor	0,1,0,1
+			text	"$150"
+			textscale	0.5
+			font	"fonts/marine"
+			textalign	1
+		}
+		windowDef monster_slot_3_t
+		{
+			rect	275,115,80,30
+			visible	1
+			forecolor	0,1,0,1
+			text	"$250"
+			textscale	0.5
+			font	"fonts/marine"
+			textalign	1
+		}
+		windowDef monster_slot_4_t
+		{
+			rect	397,115,80,30
+			visible	1
+			forecolor	0,1,0,1
+			text	"$400"
+			textscale	0.5
+			font	"fonts/marine"
+			textalign	1
+		}
+		windowDef monster_slot_5_t
+		{
+			rect	519,115,80,30
+			visible	1
+			forecolor	0,1,0,1
+			text	"$400"
+			textscale	0.5
+			font	"fonts/marine"
+			textalign	1
+		}
+		windowDef monster_slot_6_t
+		{
+			rect	275,208,80,30
+			visible	1
+			forecolor	0,1,0,1
+			text	"$500"
+			textscale	0.5
+			font	"fonts/marine"
+			textalign	1
+		}
+		windowDef bcorner1
+		{
+			rect	41,357,14,14
+			visible	1
+			background	"gfx/guis/mainmenu/corner"
+			matcolor	0.560,0.6,0.282,0.4
+		}
+		windowDef bb1
+		{
+			rect	31,347,140,40
+			visible	1
+			background	"gfx/guis/mainmenu/b6_light"
+			matcolor	0.533,0.576,0.282,0.4
+		}
+		windowDef bt1
+		{
+			rect	32,351,132,29
+			forecolor	1,1,1,0.6
+			text	"Back"
+			visible	1
+			textscale	0.33
+			font	"fonts/marine"
+			textalignx	22
+
+			onAction {
+				set "buymenu::visible" "0";
+				set "restartmenu::visible" "1";
+				transition "q4text::rect" "-34,15,485,59" "71,15,485,59" "200";
+			}
+
+			onMouseEnter {
+				set "bt1::forecolor_w" "1";
+				set "bb1::matcolor_w" "0.8";
+				set "bcorner1::matcolor"  "$desktop::orange" ;
+				
+				set "cmd" "play main_menu_mouseover" ;	
+			}
+
+			onMouseExit {
+				set "gui::buySelected" "-1";
+				namedEvent "updateBuySelected";
+				
+				transition "bb1::matcolor_w" "0.8" "0.4" "300" ;
+				transition "bt1::forecolor_w"  "1" "0.6" "300" ; 
+				transition "bcorner1::matcolor"  "$desktop::orange" "$desktop::corner" "300" ;	
+			}
+
+		}
+		windowDef bcorner2
+		{
+			rect	477,357,14,14
+			visible	1
+			background	"gfx/guis/mainmenu/corner"
+			matcolor	0.560,0.6,0.282,0.4
+		}
+		windowDef bb2
+		{
+			rect	467,347,140,40
+			visible	1
+			background	"gfx/guis/mainmenu/b6_light"
+			matcolor	0.533,0.576,0.282,0.4
+		}
+		windowDef bt2
+		{
+			rect	468,351,132,29
+			forecolor	1,1,1,0.6
+			text	"Buy"
+			visible	1
+			textscale	0.33
+			font	"fonts/marine"
+			textalignx	22
+
+			onAction {
+				if ("gui::buySelected" == 1)
+				{
+					consoleCMD "__buy 1";
+				}
+				else if ("gui::buySelected" == 2)
+				{
+					consoleCMD "__buy 2";
+				}
+				else if ("gui::buySelected" == 3)
+				{
+					consoleCMD "__buy 3";
+				}
+				else if ("gui::buySelected" == 4)
+				{
+					consoleCMD "__buy 4";
+				}
+				else if ("gui::buySelected" == 5)
+				{
+					consoleCMD "__buy 5";
+				}
+				else if ("gui::buySelected" == 6)
+				{
+					consoleCMD "__buy 6";
+				}
+				else
+				{
+					namedEvent "noSelected";
+				}
+			}
+
+			onMouseEnter {
+				set "bt2::forecolor_w" "1";
+				set "bb2::matcolor_w" "0.8";
+				set "bcorner2::matcolor"  "$desktop::orange" ;
+				
+				set "cmd" "play main_menu_mouseover" ;	
+			}
+
+			onMouseExit {
+				transition "bb2::matcolor_w" "0.8" "0.4" "300" ;
+				transition "bt2::forecolor_w"  "1" "0.6" "300" ; 
+				transition "bcorner2::matcolor"  "$desktop::orange" "$desktop::corner" "300" ;
+			}
+
+		}
+	}
+	windowDef restartmenu
+	{
+		rect	0,0,640,480
+		visible	1
+		windowDef msg_top
+		{
+			rect	129,231,360,23
+			visible	1
+			background	"gfx/guis/mainmenu/popup_top"
+			matcolor	0,0,0,0.7
+		}
+		windowDef msg_mid
+		{
+			rect	129,254,360,131
+			visible	1
+			background	"gfx/guis/mainmenu/popup_mid"
+			matcolor	0,0,0,0.7
+		}
+		windowDef msg_btm
+		{
+			rect	129,385,360,46
+			visible	1
+			background	"gfx/guis/mainmenu/popup_btm"
+			matcolor	0,0,0,0.7
+		}
+		windowDef corner1
+		{
+			rect	158,274,14,14
+			visible	1
+			background	"gfx/guis/mainmenu/corner"
+			matcolor	0.564,0.603,0.286,0.4
+		}
+		windowDef corner2
+		{
+			rect	158,314,14,14
+			visible	1
+			background	"gfx/guis/mainmenu/corner"
+			matcolor	0.564,0.603,0.286,0.4
+		}
+		windowDef corner4
+		{
+			rect	158,352,14,14
+			visible	1
+			background	"gfx/guis/mainmenu/corner"
+			matcolor	0.564,0.603,0.286,0.4
+		}
+		windowDef b1
+		{
+			rect	148,264,324,38
+			visible	1
+			background	"gfx/guis/mainmenu/b6_light"
+			matcolor	0.533,0.576,0.282,0.4
+		}
+		windowDef b2
+		{
+			rect	148,304,324,38
+			visible	1
+			background	"gfx/guis/mainmenu/b6_light"
+			matcolor	0.545,0.588,0.294,0.4
+		}
+		windowDef b4
+		{
+			rect	148,342,324,38
+			visible	1
+			background	"gfx/guis/mainmenu/b6_light"
+			matcolor	0.545,0.588,0.294,0.4
+		}
+		windowDef t1
+		{
+			rect	149,268,321,29
+			forecolor	1,1,1,0.6
+			text	"#str_200320"
+			visible	1
+			textscale	0.33
+			font	"fonts/marine"
+			textalignx	22
+
+			onAction {
+				set cmd "restart" ;
+				consoleCMD "__init_rounds" ;
+				consoleCMD "killMonsters" ;
+				consoleCMD "noclip" ;
+				consoleCMD "notarget" ;
+				
+				set "cmd" "play main_menu_selection" ;
+			}
+
+			onMouseEnter {
+				set "t1::forecolor_w" "1";
+				set "b1::matcolor_w" "0.8";
+				set "corner1::matcolor"  "$desktop::orange" ;
+				set "tip::visible" "1" ;
+				set "tip::text" "#str_200321" ;
+				
+				set "cmd" "play main_menu_mouseover" ;	
+			}
+
+			onMouseExit {
+				transition "b1::matcolor_w" "0.8" "0.4" "300" ;
+				transition "t1::forecolor_w"  "1" "0.6" "300" ; 
+				transition "corner1::matcolor"  "$desktop::orange" "$desktop::corner" "300" ;
+				set "tip::visible" "0";
+			}
+
+		}
+		windowDef t2
+		{
+			rect	149,308,321,29
+			forecolor	1,1,1,0.6
+			text	"Buy Menu"
+			visible	1
+			textscale	0.33
+			font	"fonts/marine"
+			textalignx	22
+
+			onAction {
+				set "restartmenu::visible" "0";
+				set "buymenu::visible" "1";
+				transition "q4text::rect" "71,15,485,59" "-34,15,485,59" "200";
+				transition "buyCash::rect" "653,157,225,94" "399,157,225,94" "200";
+			}
+
+			onMouseEnter {
+				set "t2::forecolor_w" "1";
+				set "b2::matcolor_w" "0.8";
+				set "corner2::matcolor"  "$desktop::orange" ;
+				set "tip::visible" "1" ;
+				set "tip::text" "#str_200914" ;
+				
+				set "cmd" "play main_menu_mouseover" ;	
+			}
+
+			onMouseExit {
+				transition "b2::matcolor_w" "0.8" "0.4" "300" ;
+				transition "t2::forecolor_w"  "1" "0.6" "300" ; 
+				transition "corner2::matcolor"  "$desktop::orange" "$desktop::corner" "300" ;
+				set "tip::visible" "0";
+			}
+
+		}
+		windowDef t4
+		{
+			rect	149,346,321,29
+			forecolor	1,1,1,0.6
+			text	"#str_200188"
+			visible	1
+			textscale	0.33
+			font	"fonts/marine"
+			textalignx	22
+
+			onAction {
+				set "cmd" "disconnect mainmenu" ;
+				
+				set "cmd" "play main_menu_selection" ;
+			}
+
+			onMouseEnter {
+				set "t4::forecolor_w" "1";
+				set "b4::matcolor_w" "0.8";
+				set "corner4::matcolor"  "$desktop::orange" ;
+				set "tip::visible" "1" ;
+				set "tip::text" "#str_200915" ;
+				
+				set "cmd" "play main_menu_mouseover" ;	
+			}
+
+			onMouseExit {
+				transition "b4::matcolor_w" "0.8" "0.4" "300" ;
+				transition "t4::forecolor_w"  "1" "0.6" "300" ; 
+				transition "corner4::matcolor"  "$desktop::orange" "$desktop::corner" "300" ;
+				set "tip::visible" "0";
+			}
+
+		}
+		windowDef msg_mid1
+		{
+			rect	68,88,498,106
+			visible	1
+			background	"gfx/guis/mainmenu/popup_mid"
+			matcolor	0,0,0,0.7
+		}
+		windowDef roundsurvived
+		{
+			rect	77,89,480,42
+			visible	1
+			forecolor	1,1,1,1
+			text	"gui::rounds_survived"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+		windowDef currentcash
+		{
+			rect	77,133,480,42
+			visible	1
+			forecolor	1,1,1,1
+			text	"gui::current_cash"
+			textscale	0.5
+			font	"fonts/marine"
+		}
+	}
+	windowDef q4text
+	{
+		rect	70,15,485,59
+		visible	1
+		forecolor	1,1,0,1
+		text	"Quake Siege"
+		textscale	1
+		textalign	1
+		textstyle	1
+		font	"fonts/r_strogg"
+	}
+	windowDef failedpurchase
+	{
+		rect	0,0,640,480
+		visible	0
+		notime	1
+
+		onTime 0 {
+			set "visible" "1";
+			transition "failedpurchase_text::forecolor" "1,0,0,1" "1,0,0,0" "800" ;
+		}
+
+		onTime +1000 {
+			set "visible" "0";
+		}
+
+		windowDef failedpurchase_text
+		{
+			rect	0,180,640,82
+			visible	1
+			forecolor	1,0,0,1
+			text	"Not Enough Cash!"
+			textscale	1
+			textalign	1
+			textstyle	2
+			font	"fonts/marine"
+		}
+	}
+	windowDef noselected
+	{
+		rect	0,0,640,480
+		visible	0
+		notime	1
+
+		onTime 0 {
+			set "visible" "1";
+			transition "noselected_text::forecolor" "1,0,0,1" "1,0,0,0" "800" ;
+		}
+
+		onTime +1000 {
+			set "visible" "0";
+		}
+
+		windowDef noselected_text
+		{
+			rect	0,180,640,82
+			visible	1
+			forecolor	1,0,0,1
+			text	"No Unit Selected!"
+			textscale	1
+			textalign	1
+			textstyle	2
+			font	"fonts/marine"
+		}
 	}
 }

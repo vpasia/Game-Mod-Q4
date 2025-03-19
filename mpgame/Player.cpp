@@ -8551,6 +8551,7 @@ void idPlayer::PerformImpulse( int impulse ) {
 // RITUAL END
 
 		case IMPULSE_50: {
+			gameLocal.Printf("NO Flashlight\n");
 			ToggleFlashlight ( );
 			break;
 		}

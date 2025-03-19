@@ -8,8 +8,20 @@
 void RoundManager::Init() 
 {
 	round = 1;
+	SetRoundEcon();
 	roundEnded = true;
 	roundStarted = false;
+	playerLost = false;
+
+	if (playerUnits.Num() > 0) 
+	{
+		ClearPlayerUnits();
+	}
+
+	if (enemyUnits.Num() > 0) 
+	{
+		ClearEnemyUnits();
+	}
 }
 
 void RoundManager::StartRound() 
@@ -39,9 +51,19 @@ bool RoundManager::CheckEndRound()
 	return playerUnits.Num() == 0 || enemyUnits.Num() == 0;
 }
 
+idRandom2 rng(gameLocal.random.RandomInt());
+
 void RoundManager::SpawnEnemyUnits() 
 {
-	const char* units[] = {
+	idList<idVec3> savedSpawnPositions;
+
+	idDict dict;
+	idVec3 origin;
+	float yaw = -58;
+
+	bool validPositionSelected = false;
+
+	const char* monsters[] = {
 					"monster_slimy_transfer",
 					"monster_strogg_marine_mgun",
 					"monster_grunt",
@@ -54,21 +76,11 @@ void RoundManager::SpawnEnemyUnits()
 					"monster_stream_protector"
 	};
 
-	idRandom2 rng(gameLocal.random.RandomInt());
-
-	idList<idVec3> savedSpawnPositions;
-
-	idDict dict;
-	idVec3 origin;
-	float yaw = -58;
-
-	bool validPositionSelected = false;
-
 	for (int i = 0; i < round; i++) 
 	{
 		int monster_idx = rng.RandomInt(round / 4);
 
-		dict.Set("classname", va("%s", units[monster_idx]));
+		dict.Set("classname", va("%s", monsters[monster_idx]));
 		dict.Set("angle", va("%f", yaw));
 
 		while (!validPositionSelected) 
@@ -124,10 +136,26 @@ void RoundManager::RemoveEnemyUnit(int entityNum)
 	enemyUnits.Remove(entityNum);
 }
 
+void RoundManager::ClearEnemyUnits()
+{
+	int enemyUnitCount = playerUnits.Num();
+
+	for (int i = 0; i < enemyUnitCount; i++)
+	{
+		idEntity* enemyUnit = gameLocal.entities[enemyUnits[i]];
+
+		if (enemyUnit)
+		{
+			delete enemyUnit;
+		}
+	}
+
+	enemyUnits.Clear();
+}
+
 void RoundManager::AddPlayerUnit(int entityNum) 
 {
 	int index = playerUnits.Append(entityNum);
-	gameLocal.Printf("Appended entity num %d, at index %d\n", entityNum, index);
 }
 
 void RoundManager::RemovePlayerUnit(int entityNum) 
@@ -141,17 +169,55 @@ void RoundManager::ClearPlayerUnits()
 
 	for (int i = 0; i < playerUnitCount; i++)
 	{
-		gameLocal.Printf("Fetching entity num %d at index %d\n", playerUnits[i], i);
 		idEntity* playerUnit = gameLocal.entities[playerUnits[i]];
 
 		if (playerUnit)
 		{
-			gameLocal.Printf("Deleting player unit %s\n", playerUnit->name.c_str());
 			delete playerUnit;
 		}
 	}
 
 	playerUnits.Clear();
+}
+
+bool RoundManager::SpendEcon(int index) 
+{
+	if (index < 0 || index >= 10) 
+	{
+		return false;
+	}
+
+	int cost = 0;
+
+	switch (index) 
+	{
+		case 0:
+			cost = 50;
+			break;
+		case 1:
+			cost = 100;
+			break;
+		case 2:
+		case 3:
+			cost = 150;
+			break;
+		default:
+			cost = 50 + (50 * (index - 1));
+			break;
+	}
+
+	if (roundEcon - cost < 0) 
+	{
+		return false;
+	}
+
+	roundEcon -= cost;
+	return true;
+}
+
+void RoundManager::SetRoundEcon() 
+{
+	roundEcon = (100 * round) + (50 * gameLocal.puinventory.purchasedCount);
 }
 
 void RoundManager::Think() 
@@ -171,15 +237,20 @@ void RoundManager::Think()
 
 			if (playerUnits.Num() == 0)
 			{
-				Init();
+				ClearEnemyUnits();
+				playerLost = true;
 				player->Kill(false, false);
 
 				return;
 			}
 			else if (enemyUnits.Num() == 0) 
 			{
-				round++;
 				ClearPlayerUnits();
+
+				round++;
+				SetRoundEcon();
+				gameLocal.puinventory.GiveCash(50);
+
 				player->Teleport(idVec3(7646, 12800, 2059), player->spawnAngles, NULL);
 			}
 		}

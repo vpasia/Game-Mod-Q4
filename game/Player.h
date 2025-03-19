@@ -267,54 +267,6 @@ public:
 	int						secretAreasDiscovered;
 };
 
-const char* SPAWNABLE_UNITS[]  = {
-					"monster_slimy_transfer",
-					"monster_strogg_marine_mgun",
-					"monster_grunt",
-					"monster_scientist",
-					"monster_convoy_ground",
-					"monster_gunner",
-					"monster_berserker",
-					"monster_iron_maiden",
-					"monster_gladiator",
-					"monster_stream_protector"
-};
-
-const unsigned int UNIT_COSTS[] = {
-	150,
-	150,
-	250,
-	400,
-	400,
-	500
-};
-
-#define PURCHASABLE_MASK 0x3F
-
-class PlayerUnitInventory 
-{
-	private:
-		unsigned int cash;
-
-
-	public:
-		unsigned int availableUnits;
-
-		const char* GetSpawnUnit(int index);
-
-		unsigned int GetCash() { return cash; }
-		void GiveCash(unsigned int dcash) { cash += dcash;  }
-		void SetCash(unsigned int dcash) { cash = dcash; }
-		bool AttemptToBuyUnit(int index);
-
-
-		PlayerUnitInventory()
-		{
-			cash = 0;
-			availableUnits = 0x3C0;
-		}
-};
-
 class idPlayer : public idActor {
 public:
 

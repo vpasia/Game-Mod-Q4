@@ -519,6 +519,9 @@
     <ClCompile Include="game\RoundManager.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="game\PlayerUnitInventory.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game\Actor.h">
@@ -834,6 +837,9 @@
       <Filter>Game\MP\Stats</Filter>
     </ClInclude>
     <ClInclude Include="game\RoundManager.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\PlayerUnitInventory.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

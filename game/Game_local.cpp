@@ -589,6 +589,7 @@ void idGameLocal::Init( void ) {
 	networkSystem->AddSortFunction( filterByMod );
 
 	roundManager.Init();
+	restartUI = NULL;
 }
 
 /*
@@ -3449,7 +3450,31 @@ idGameLocal::MenuFrame
 Called each session frame when a map is not running (e.g. usually in the main menu)
 ================
 */
-void idGameLocal::MenuFrame( void ) { }
+void idGameLocal::MenuFrame( void ) 
+{
+	if (!restartUI) 
+	{
+		restartUI = uiManager->FindGuiByIndex(1);
+	}
+
+	if (restartUI && roundManager.playerLost)
+	{
+		restartUI->SetStateString("cash", va("$%d", gameLocal.puinventory.GetCash()));
+		restartUI->SetStateString("rounds_survived", va("Rounds Survived: %d", gameLocal.roundManager.round));
+		restartUI->SetStateString("current_cash", va("Cash: %d", gameLocal.puinventory.GetCash()));
+
+		for (int i = 1; i <= 6; i++)
+		{
+			if ((gameLocal.puinventory.availableUnits >> (10 - (i + 3) - 1)) & 1)
+			{
+				restartUI->SetStateInt(va("purchased_%d", i), 1);
+				restartUI->HandleNamedEvent(va("updateSlot%d", i));
+			}
+		}
+
+		//restartUI->StateChanged(gameLocal.realClientTime);
+	}
+}
 
 /*
 ================
@@ -3519,7 +3544,7 @@ TIME_THIS_SCOPE("idGameLocal::RunFrame - gameDebug.BeginFrame()");
 			}
 		}
 
-		if (player->noclip)
+		if (player && player->noclip)
 		{
 			roundManager.Think();
 		}
@@ -7669,56 +7694,51 @@ idEntity* idGameLocal::HitScan(
 				idVec3 origin;
 				float yaw = 130;
 
-				const char* units[] = {
-					"monster_slimy_transfer",
-					"monster_strogg_marine_mgun",
-					"monster_grunt",
-					"monster_scientist",
-					"monster_gunner",
-					"monster_berserker",
-					"monster_iron_maiden",
-					"monster_gladiator",
-					"monster_convoy_ground",
-					"monster_stream_protector"
-				};
-
-
-				int monster_idx = 0;
-
-				if (player->usercmd.impulse >= 0 && player->usercmd.impulse < 10) 
+				if ((collisionPoint.x > 5946 && collisionPoint.x < 8736) && (collisionPoint.y > 11098 && collisionPoint.y < 12577))
 				{
-					monster_idx = player->usercmd.impulse;
-				}
-				Printf("Selected to Spawn: %s at pos(%f, %f, %f)\n", units[monster_idx], collisionPoint.x, collisionPoint.y, collisionPoint.z);
-				
-				if ((collisionPoint.x > 5946 && collisionPoint.x < 8736) && (collisionPoint.y > 11098 && collisionPoint.y < 12577)) 
-				{
-					dict.Set("classname", va("%s", units[monster_idx]));
-					dict.Set("angle", va("%f", yaw));
-					dict.SetInt("team", AITEAM_MARINE);
+					const char* unit = gameLocal.puinventory.GetSpawnUnit(player->usercmd.impulse);
+					bool attemptToSpend = unit ? gameLocal.roundManager.SpendEcon(player->usercmd.impulse) : false;
 
-					origin = collisionPoint;
-					dict.Set("origin", origin.ToString());
-
-					dict.SetFloat("visRange", 2048);
-					dict.SetFloat("earRange", 2048);
-					dict.SetFloat("awareRange", 2048);
-
-					dict.SetInt("notarget", 1);
-
-					idEntity* newEnt = NULL;
-					SpawnEntityDef(dict, &newEnt);
-
-					if (newEnt)
+					if (unit && attemptToSpend)
 					{
-						roundManager.AddPlayerUnit(newEnt->entityNumber);
+						Printf("Selected to Spawn: %s at pos(%f, %f, %f)\n", unit, collisionPoint.x, collisionPoint.y, collisionPoint.z);
+
+						dict.Set("classname", va("%s", unit));
+						dict.Set("angle", va("%f", yaw));
+						dict.SetInt("team", AITEAM_MARINE);
+
+						origin = collisionPoint;
+						dict.Set("origin", origin.ToString());
+
+						dict.SetFloat("visRange", 2048);
+						dict.SetFloat("earRange", 2048);
+						dict.SetFloat("awareRange", 2048);
+
+						dict.SetInt("notarget", 1);
+
+						idEntity* newEnt = NULL;
+						SpawnEntityDef(dict, &newEnt);
+
+						if (newEnt)
+						{
+							roundManager.AddPlayerUnit(newEnt->entityNumber);
+						}
+					}
+					else if (!unit && player->usercmd.impulse >= 0 && player->usercmd.impulse < 10)
+					{
+						player->hud->HandleNamedEvent("notYetUnlocked");
+					}
+					else if (!attemptToSpend && player->usercmd.impulse >= 0 && player->usercmd.impulse < 10)
+					{
+						player->hud->HandleNamedEvent("notEnoughEcon");
 					}
 				}
-				else 
+				else
 				{
 					Printf("Out of Bounds.\n");
 					player->hud->HandleNamedEvent("outOfBounds");
 				}
+
 				
 			}
 
